@@ -11,57 +11,64 @@ import Contacts
 enum ContactFetchingError: Error {
     // When access was already requested but denied
     case insufficientAccess
+    
     // When user was just asked for access but they denied
     case accessNotGranted
     
     // The authorisation status is unknown
     case unknownAuthorisation
     
+    // Waiting for user actions
+    case pendingAuthorisation
+    
     // The fetching
     case fetchRequestFailed
 }
 
 class KNContactsAuthorisation {
+    static let contactStore = CNContactStore()
     
     static func requestAccess() -> Result<[CNContact], ContactFetchingError> {
-        let contactStore = CNContactStore()
+       
         
-        var result: Result<[CNContact], ContactFetchingError> = Result.failure(.fetchRequestFailed)
+        var result: Result<[CNContact], ContactFetchingError> = Result.failure(.pendingAuthorisation)
         
         switch CNContactStore.authorizationStatus(for: .contacts) {
+        
         case CNAuthorizationStatus.denied, CNAuthorizationStatus.restricted:
-            result = Result.failure(.insufficientAccess)
+            return Result.failure(.insufficientAccess)
             
         case CNAuthorizationStatus.notDetermined:
             
             contactStore.requestAccess(for: .contacts, completionHandler: { (granted, error) -> Void in
-
                 result = granted ? self.requestAccess() : Result.failure(.accessNotGranted)
             })
             
-        case  CNAuthorizationStatus.authorized:
-            //Authorization granted by user for this app.
-            var contactsArray = [CNContact]()
+            return result
             
-            let contactFetchRequest = CNContactFetchRequest(keysToFetch: KNContactUtils.getBasicDisplayKeys())
+            
+            
+        case  CNAuthorizationStatus.authorized:
+
+            var allContacts = [CNContact]()
+            let fetchRequestKeys = CNContactFetchRequest(keysToFetch: KNContactUtils.getBasicDisplayKeys())
             
             do {
-                try contactStore.enumerateContacts(with: contactFetchRequest, usingBlock: { (contact, stop) -> Void in
-                    contactsArray.append(contact)
+                try self.contactStore.enumerateContacts(with: fetchRequestKeys, usingBlock: { (contact, stop) -> Void in
+                    allContacts.append(contact)
                 })
               
-                result = Result.success(contactsArray)
+                return Result.success(allContacts)
             }
 
             catch {
-                result = Result.failure(.fetchRequestFailed)
+                return Result.failure(.fetchRequestFailed)
             }
             
         @unknown default:
-            result = Result.failure(.unknownAuthorisation)
+            return Result.failure(.unknownAuthorisation)
         }
         
-        return result
     }
     
     static func checkAuthorisationStatus() -> CNAuthorizationStatus {
