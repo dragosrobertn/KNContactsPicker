@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15A3811F2365BB860039DC59 /* UIImage+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3811E2365BB860039DC59 /* UIImage+Initials.swift */; };
+		15A381282366E9850039DC59 /* KNContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A381262366E9850039DC59 /* KNContactCell.swift */; };
+		15D710A22361F2E300EB9F6D /* KNContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */; };
+		15FC45BA235F7F0100AF13C4 /* KNContactsPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FC45B0235F7F0100AF13C4 /* KNContactsPicker.framework */; };
+		15FC45BF235F7F0100AF13C4 /* KNContactsPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45BE235F7F0100AF13C4 /* KNContactsPickerTests.swift */; };
+		15FC45C1235F7F0100AF13C4 /* KNContactsPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 15FC45B3235F7F0100AF13C4 /* KNContactsPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		15FC45CB235F7FB500AF13C4 /* KNContactsPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45CA235F7FB500AF13C4 /* KNContactsPickerController.swift */; };
+		15FC45CE235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */; };
+		15FC45CF235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */; };
+		15FC45D1235FA93800AF13C4 /* KNContactUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D0235FA93800AF13C4 /* KNContactUtils.swift */; };
+		15FC45D2235FA93800AF13C4 /* KNContactUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D0235FA93800AF13C4 /* KNContactUtils.swift */; };
+		15FC45D4235FB08B00AF13C4 /* CNContact+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D3235FB08B00AF13C4 /* CNContact+Ext.swift */; };
+		15FC45D5235FB08B00AF13C4 /* CNContact+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D3235FB08B00AF13C4 /* CNContact+Ext.swift */; };
+		15FC45D7235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D6235FB0A800AF13C4 /* UIColor+Ext.swift */; };
+		15FC45D8235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D6235FB0A800AF13C4 /* UIColor+Ext.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15FC45BB235F7F0100AF13C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15FC45A7235F7F0100AF13C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15FC45AF235F7F0100AF13C4;
+			remoteInfo = KNContactsPicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15A3811E2365BB860039DC59 /* UIImage+Initials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Initials.swift"; sourceTree = "<group>"; };
+		15A381262366E9850039DC59 /* KNContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNContactCell.swift; sourceTree = "<group>"; };
+		15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactsPicker.swift; sourceTree = "<group>"; };
+		15FC45B0235F7F0100AF13C4 /* KNContactsPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KNContactsPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15FC45B3235F7F0100AF13C4 /* KNContactsPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNContactsPicker.h; sourceTree = "<group>"; };
+		15FC45B4235F7F0100AF13C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15FC45B9235F7F0100AF13C4 /* KNContactsPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KNContactsPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15FC45BE235F7F0100AF13C4 /* KNContactsPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactsPickerTests.swift; sourceTree = "<group>"; };
+		15FC45C0235F7F0100AF13C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15FC45CA235F7FB500AF13C4 /* KNContactsPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactsPickerController.swift; sourceTree = "<group>"; };
+		15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactsAuthorisation.swift; sourceTree = "<group>"; };
+		15FC45D0235FA93800AF13C4 /* KNContactUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNContactUtils.swift; sourceTree = "<group>"; };
+		15FC45D3235FB08B00AF13C4 /* CNContact+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CNContact+Ext.swift"; sourceTree = "<group>"; };
+		15FC45D6235FB0A800AF13C4 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15FC45AD235F7F0100AF13C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15FC45B6235F7F0100AF13C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15FC45BA235F7F0100AF13C4 /* KNContactsPicker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15FC45A6235F7F0100AF13C4 = {
+			isa = PBXGroup;
+			children = (
+				15FC45B2235F7F0100AF13C4 /* KNContactsPicker */,
+				15FC45BD235F7F0100AF13C4 /* KNContactsPickerTests */,
+				15FC45B1235F7F0100AF13C4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15FC45B1235F7F0100AF13C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15FC45B0235F7F0100AF13C4 /* KNContactsPicker.framework */,
+				15FC45B9235F7F0100AF13C4 /* KNContactsPickerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15FC45B2235F7F0100AF13C4 /* KNContactsPicker */ = {
+			isa = PBXGroup;
+			children = (
+				15A3811E2365BB860039DC59 /* UIImage+Initials.swift */,
+				15FC45CA235F7FB500AF13C4 /* KNContactsPickerController.swift */,
+				15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */,
+				15FC45D6235FB0A800AF13C4 /* UIColor+Ext.swift */,
+				15FC45D3235FB08B00AF13C4 /* CNContact+Ext.swift */,
+				15FC45D0235FA93800AF13C4 /* KNContactUtils.swift */,
+				15FC45B3235F7F0100AF13C4 /* KNContactsPicker.h */,
+				15FC45B4235F7F0100AF13C4 /* Info.plist */,
+				15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */,
+				15A381262366E9850039DC59 /* KNContactCell.swift */,
+			);
+			path = KNContactsPicker;
+			sourceTree = "<group>";
+		};
+		15FC45BD235F7F0100AF13C4 /* KNContactsPickerTests */ = {
+			isa = PBXGroup;
+			children = (
+				15FC45BE235F7F0100AF13C4 /* KNContactsPickerTests.swift */,
+				15FC45C0235F7F0100AF13C4 /* Info.plist */,
+			);
+			path = KNContactsPickerTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		15FC45AB235F7F0100AF13C4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15FC45C1235F7F0100AF13C4 /* KNContactsPicker.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		15FC45AF235F7F0100AF13C4 /* KNContactsPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15FC45C4235F7F0100AF13C4 /* Build configuration list for PBXNativeTarget "KNContactsPicker" */;
+			buildPhases = (
+				15FC45AB235F7F0100AF13C4 /* Headers */,
+				15FC45AC235F7F0100AF13C4 /* Sources */,
+				15FC45AD235F7F0100AF13C4 /* Frameworks */,
+				15FC45AE235F7F0100AF13C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KNContactsPicker;
+			productName = KNContactsPicker;
+			productReference = 15FC45B0235F7F0100AF13C4 /* KNContactsPicker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		15FC45B8235F7F0100AF13C4 /* KNContactsPickerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15FC45C7235F7F0100AF13C4 /* Build configuration list for PBXNativeTarget "KNContactsPickerTests" */;
+			buildPhases = (
+				15FC45B5235F7F0100AF13C4 /* Sources */,
+				15FC45B6235F7F0100AF13C4 /* Frameworks */,
+				15FC45B7235F7F0100AF13C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15FC45BC235F7F0100AF13C4 /* PBXTargetDependency */,
+			);
+			name = KNContactsPickerTests;
+			productName = KNContactsPickerTests;
+			productReference = 15FC45B9235F7F0100AF13C4 /* KNContactsPickerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15FC45A7235F7F0100AF13C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = "Dragos-Robert Neagu";
+				TargetAttributes = {
+					15FC45AF235F7F0100AF13C4 = {
+						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1110;
+					};
+					15FC45B8235F7F0100AF13C4 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+				};
+			};
+			buildConfigurationList = 15FC45AA235F7F0100AF13C4 /* Build configuration list for PBXProject "KNContactsPicker" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15FC45A6235F7F0100AF13C4;
+			productRefGroup = 15FC45B1235F7F0100AF13C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15FC45AF235F7F0100AF13C4 /* KNContactsPicker */,
+				15FC45B8235F7F0100AF13C4 /* KNContactsPickerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15FC45AE235F7F0100AF13C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15FC45B7235F7F0100AF13C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15FC45AC235F7F0100AF13C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15FC45CE235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */,
+				15FC45CB235F7FB500AF13C4 /* KNContactsPickerController.swift in Sources */,
+				15FC45D7235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */,
+				15A381282366E9850039DC59 /* KNContactCell.swift in Sources */,
+				15A3811F2365BB860039DC59 /* UIImage+Initials.swift in Sources */,
+				15D710A22361F2E300EB9F6D /* KNContactsPicker.swift in Sources */,
+				15FC45D1235FA93800AF13C4 /* KNContactUtils.swift in Sources */,
+				15FC45D4235FB08B00AF13C4 /* CNContact+Ext.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15FC45B5235F7F0100AF13C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15FC45CF235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */,
+				15FC45BF235F7F0100AF13C4 /* KNContactsPickerTests.swift in Sources */,
+				15FC45D8235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */,
+				15FC45D2235FA93800AF13C4 /* KNContactUtils.swift in Sources */,
+				15FC45D5235FB08B00AF13C4 /* CNContact+Ext.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15FC45BC235F7F0100AF13C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15FC45AF235F7F0100AF13C4 /* KNContactsPicker */;
+			targetProxy = 15FC45BB235F7F0100AF13C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		15FC45C2235F7F0100AF13C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		15FC45C3235F7F0100AF13C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		15FC45C5235F7F0100AF13C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8UXEK92PP3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KNContactsPicker/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dragosneagu.KNContactsPicker;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15FC45C6235F7F0100AF13C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8UXEK92PP3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KNContactsPicker/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dragosneagu.KNContactsPicker;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		15FC45C8235F7F0100AF13C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8UXEK92PP3;
+				INFOPLIST_FILE = KNContactsPickerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dragosneagu.KNContactsPickerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15FC45C9235F7F0100AF13C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8UXEK92PP3;
+				INFOPLIST_FILE = KNContactsPickerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dragosneagu.KNContactsPickerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15FC45AA235F7F0100AF13C4 /* Build configuration list for PBXProject "KNContactsPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15FC45C2235F7F0100AF13C4 /* Debug */,
+				15FC45C3235F7F0100AF13C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15FC45C4235F7F0100AF13C4 /* Build configuration list for PBXNativeTarget "KNContactsPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15FC45C5235F7F0100AF13C4 /* Debug */,
+				15FC45C6235F7F0100AF13C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15FC45C7235F7F0100AF13C4 /* Build configuration list for PBXNativeTarget "KNContactsPickerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15FC45C8235F7F0100AF13C4 /* Debug */,
+				15FC45C9235F7F0100AF13C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15FC45A7235F7F0100AF13C4 /* Project object */;
+}
