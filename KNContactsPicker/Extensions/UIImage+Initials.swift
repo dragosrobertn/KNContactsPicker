@@ -94,18 +94,3 @@ extension UIImage {
         return image
     }
 }
-
-extension UIImageView {
-    
-    var shouldScale: Bool {
-        if (self.contentMode == .scaleToFill ||
-            self.contentMode == .scaleAspectFill ||
-            self.contentMode == .scaleAspectFit ||
-            self.contentMode == .redraw) {
-            
-            return true
-        }
-        
-        return false
-    }
-}

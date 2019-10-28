@@ -10,59 +10,49 @@ import UIKit
 import Contacts
 
 open class KNContactsPickerController: UITableViewController {
-    
-    var allContacts: [CNContact] = []
-    var selectedContacts: Set<CNContact> = [] {
-        willSet(newValue) {
-            self.updateTitleWith(value: newValue.count)
-        }
-    }
+    let CELL_ID = "KNContactCell"
     let formatter =  CNContactFormatter()
     
-    var initialColor: UIColor? = nil
-
+    var all: [CNContact] = []
+    var selected: Set<CNContact> = [] {
+        willSet(newValue) {
+            self.updateTitleWithSelected(contactsCount: newValue.count)
+        }
+    }
     
     override open func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        self.updateTitleWith(value: 0)
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-
-        self.tableView.register(KNContactCell.self, forCellReuseIdentifier: "KNContactCell")
+        self.tableView.register(KNContactCell.self, forCellReuseIdentifier: CELL_ID)
+        self.updateTitleWithSelected()
         self.fetchContacts()
     }
     
-    func updateTitleWith(value: Int) {
-         self.title = value > 0 ? String.init(format: "%d selected", value) : "Contacts"
+    func updateTitleWithSelected(contactsCount: Int = 0) {
+         self.title = contactsCount > 0 ? String.init(format: "%d selected", contactsCount) : "Contacts"
     }
-
-    // MARK: - Table view data source
 
     override open func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allContacts.count
+        return all.count
     }
 
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "KNContactCell", for: indexPath) as! KNContactCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! KNContactCell
         
-        let contact = allContacts[indexPath.row]
-        let name = formatter.string(from: contact)
-
+        let contact = all[indexPath.row]
 
         let image = contact.getImageOrInitials(bounds: cell.profileImageView.bounds, scaled: cell.imageView?.shouldScale ?? true)
         
-        cell.nameLabel.text = name
+        cell.nameLabel.text = contact.getFullName(using: formatter)
         cell.profileImageView.image = image
+        cell.profileImageView.highlightedImage = image
         
-        let selected = selectedContacts.contains(contact)
-        cell.setSelected(selected, animated: false)
+        let cellIsSelected = selected.contains(contact)
+        cell.setSelected(cellIsSelected, animated: false)
  
         return cell
     }
@@ -72,22 +62,17 @@ open class KNContactsPickerController: UITableViewController {
     }
     
     fileprivate func toggleSelected(_ contact: CNContact) {
-        if selectedContacts.contains(contact) {
-            selectedContacts.remove(contact)
+        if selected.contains(contact) {
+            selected.remove(contact)
         }
         else {
-            selectedContacts.insert(contact)
+            selected.insert(contact)
         }
     }
     
     override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let contact = allContacts[indexPath.row]
-        
-        toggleSelected(contact)
-        
-
-//        self.updateTitle()
+        let contact = all[indexPath.row]
+        self.toggleSelected(contact)
         self.tableView.reloadData()
     }
     
@@ -97,7 +82,7 @@ open class KNContactsPickerController: UITableViewController {
             let result = KNContactsAuthorisation.requestAccess()
             switch result {
             case .success(let resultContacts):
-                allContacts = resultContacts.sorted(by: {(contact1, contact2) in contact1.familyName < contact2.familyName })
+                all = resultContacts.sorted(by: {(contact1, contact2) in contact1.familyName < contact2.familyName })
             case .failure(let f):
                 print(f)
             }

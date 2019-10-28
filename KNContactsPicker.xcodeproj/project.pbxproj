@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		155EBE2B23677934002FD8D4 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155EBE2A23677934002FD8D4 /* UIImageView+Ext.swift */; };
+		155EBE2D23677AF4002FD8D4 /* String+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155EBE2C23677AF4002FD8D4 /* String+Initials.swift */; };
 		15A3811F2365BB860039DC59 /* UIImage+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3811E2365BB860039DC59 /* UIImage+Initials.swift */; };
 		15A381282366E9850039DC59 /* KNContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A381262366E9850039DC59 /* KNContactCell.swift */; };
 		15D710A22361F2E300EB9F6D /* KNContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */; };
@@ -17,11 +19,8 @@
 		15FC45CE235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */; };
 		15FC45CF235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */; };
 		15FC45D1235FA93800AF13C4 /* KNContactUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D0235FA93800AF13C4 /* KNContactUtils.swift */; };
-		15FC45D2235FA93800AF13C4 /* KNContactUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D0235FA93800AF13C4 /* KNContactUtils.swift */; };
 		15FC45D4235FB08B00AF13C4 /* CNContact+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D3235FB08B00AF13C4 /* CNContact+Ext.swift */; };
-		15FC45D5235FB08B00AF13C4 /* CNContact+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D3235FB08B00AF13C4 /* CNContact+Ext.swift */; };
 		15FC45D7235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D6235FB0A800AF13C4 /* UIColor+Ext.swift */; };
-		15FC45D8235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45D6235FB0A800AF13C4 /* UIColor+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		155EBE2A23677934002FD8D4 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		155EBE2C23677AF4002FD8D4 /* String+Initials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Initials.swift"; sourceTree = "<group>"; };
 		15A3811E2365BB860039DC59 /* UIImage+Initials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Initials.swift"; sourceTree = "<group>"; };
 		15A381262366E9850039DC59 /* KNContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNContactCell.swift; sourceTree = "<group>"; };
 		15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactsPicker.swift; sourceTree = "<group>"; };
@@ -70,6 +71,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		155EBE29236778E3002FD8D4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				15FC45D3235FB08B00AF13C4 /* CNContact+Ext.swift */,
+				15FC45D6235FB0A800AF13C4 /* UIColor+Ext.swift */,
+				15A3811E2365BB860039DC59 /* UIImage+Initials.swift */,
+				155EBE2A23677934002FD8D4 /* UIImageView+Ext.swift */,
+				155EBE2C23677AF4002FD8D4 /* String+Initials.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		15FC45A6235F7F0100AF13C4 = {
 			isa = PBXGroup;
 			children = (
@@ -91,11 +104,9 @@
 		15FC45B2235F7F0100AF13C4 /* KNContactsPicker */ = {
 			isa = PBXGroup;
 			children = (
-				15A3811E2365BB860039DC59 /* UIImage+Initials.swift */,
+				155EBE29236778E3002FD8D4 /* Extensions */,
 				15FC45CA235F7FB500AF13C4 /* KNContactsPickerController.swift */,
 				15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */,
-				15FC45D6235FB0A800AF13C4 /* UIColor+Ext.swift */,
-				15FC45D3235FB08B00AF13C4 /* CNContact+Ext.swift */,
 				15FC45D0235FA93800AF13C4 /* KNContactUtils.swift */,
 				15FC45B3235F7F0100AF13C4 /* KNContactsPicker.h */,
 				15FC45B4235F7F0100AF13C4 /* Info.plist */,
@@ -227,11 +238,13 @@
 				15FC45CE235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */,
 				15FC45CB235F7FB500AF13C4 /* KNContactsPickerController.swift in Sources */,
 				15FC45D7235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */,
+				155EBE2B23677934002FD8D4 /* UIImageView+Ext.swift in Sources */,
 				15A381282366E9850039DC59 /* KNContactCell.swift in Sources */,
 				15A3811F2365BB860039DC59 /* UIImage+Initials.swift in Sources */,
 				15D710A22361F2E300EB9F6D /* KNContactsPicker.swift in Sources */,
 				15FC45D1235FA93800AF13C4 /* KNContactUtils.swift in Sources */,
 				15FC45D4235FB08B00AF13C4 /* CNContact+Ext.swift in Sources */,
+				155EBE2D23677AF4002FD8D4 /* String+Initials.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,9 +254,6 @@
 			files = (
 				15FC45CF235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */,
 				15FC45BF235F7F0100AF13C4 /* KNContactsPickerTests.swift in Sources */,
-				15FC45D8235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */,
-				15FC45D2235FA93800AF13C4 /* KNContactUtils.swift in Sources */,
-				15FC45D5235FB08B00AF13C4 /* CNContact+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

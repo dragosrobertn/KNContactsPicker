@@ -20,16 +20,16 @@ class KNContactCell: UITableViewCell {
     
     let profileImageView: UIImageView = {
         let img = UIImageView()
-        let bounds = CGRect(x: 0, y: 0, width: 45, height: 45)
+        let bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
 
         img.bounds = bounds
         img.frame = CGRect(x: img.frame.origin.x,
                            y: img.frame.origin.y ,
-                           width: 45,
+                           width: 40,
                            height: img.frame.size.height )
         img.contentMode = .scaleAspectFill // image will never be strecthed vertially or horizontally
         img.translatesAutoresizingMaskIntoConstraints = false // enable autolayout
-        img.layer.cornerRadius = 22.5
+        img.layer.cornerRadius = 20
         img.clipsToBounds = true
        return img
     }()
@@ -49,8 +49,8 @@ class KNContactCell: UITableViewCell {
         
         profileImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         profileImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant:10).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant:45).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant:45).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant:40).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant:40).isActive = true
         nameLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo:self.profileImageView.trailingAnchor, constant:10).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:10).isActive = true
@@ -76,6 +76,7 @@ class KNContactCell: UITableViewCell {
         }
         else {
             self.backgroundColor = initialColor
+            self.accessoryView?.backgroundColor = UIColor.clear
             self.accessoryType = UITableViewCell.AccessoryType.none
             self.contentView.backgroundColor = initialColor
             self.nameLabel.textColor = UIColor.black

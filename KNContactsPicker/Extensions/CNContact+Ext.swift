@@ -30,23 +30,9 @@ extension CNContact {
         guard let contactImageData = self.imageData else { return nil }
         return UIImage(data: contactImageData, scale: 1.0)
     }
-}
-
-extension String {
     
-    var initials: String {
-        var finalString = String()
-        var words = components(separatedBy: .whitespacesAndNewlines)
-        
-        if let firstCharacter = words.first?.first {
-            finalString.append(String(firstCharacter))
-            words.removeFirst()
-        }
-        
-        if let lastCharacter = words.last?.first {
-            finalString.append(String(lastCharacter))
-        }
-        
-        return finalString.uppercased()
+    func getFullName(using formatter: CNContactFormatter) -> String {
+        return formatter.string(from: self) ?? ""
     }
 }
+
