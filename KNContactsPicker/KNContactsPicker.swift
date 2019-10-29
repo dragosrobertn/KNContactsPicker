@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 
 open class KNContactsPicker: UINavigationController {
-
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +21,11 @@ open class KNContactsPicker: UINavigationController {
         } else {
             style = UITableView.Style.grouped
         }
+        var settings = KNPickerSettings()
+        settings.pickerTitle = "Pick"
+        
         let controller = KNContactsPickerController(style: style)
+        controller.settings = settings
         
         self.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always

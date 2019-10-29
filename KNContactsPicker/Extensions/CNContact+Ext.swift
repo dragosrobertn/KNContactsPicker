@@ -13,7 +13,11 @@ extension CNContact {
     func getImageOrInitials(bounds: CGRect, scaled: Bool) -> UIImage? {
         guard self.imageDataAvailable, let image = self.getImage()
         else {
-            let gradientColors = GradientColors(top: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), bottom: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
+            let gradientColors = GradientColors(
+                top: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1),
+                bottom: #colorLiteral(red: 0, green: 0.4881725907, blue: 1, alpha: 1)
+            )
+            
 
             let formatter = CNContactFormatter()
             let name = formatter.string(from: self)

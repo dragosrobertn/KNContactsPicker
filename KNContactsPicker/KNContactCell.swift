@@ -9,6 +9,8 @@
 import UIKit
 
 class KNContactCell: UITableViewCell {
+    var disabled: Bool = false
+    
     var initialColor: UIColor {
          get {
              if #available(iOS 13.0, *) {
@@ -30,13 +32,15 @@ class KNContactCell: UITableViewCell {
         img.contentMode = .scaleAspectFill // image will never be strecthed vertially or horizontally
         img.translatesAutoresizingMaskIntoConstraints = false // enable autolayout
         img.layer.cornerRadius = 20
+        img.layer.borderWidth = 2
+        img.layer.borderColor = UIColor.white.cgColor
         img.clipsToBounds = true
        return img
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -64,29 +68,40 @@ class KNContactCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+       
         
-        if (self.isSelected) {
-            self.accessoryView?.backgroundColor = UIColor.systemBlue
-            self.accessoryType = UITableViewCell.AccessoryType.checkmark
-            self.tintColor = UIColor.white
-            self.backgroundColor = UIColor.systemBlue
-            self.contentView.backgroundColor = UIColor.systemBlue
-            self.nameLabel.textColor = UIColor.white
-        }
-        else {
-            self.backgroundColor = initialColor
-            self.accessoryView?.backgroundColor = UIColor.clear
-            self.accessoryType = UITableViewCell.AccessoryType.none
-            self.contentView.backgroundColor = initialColor
-            self.nameLabel.textColor = UIColor.black
+        if (!disabled) {
+            super.setSelected(selected, animated: animated)
+            if (self.isSelected) {
+                self.accessoryView?.backgroundColor = UIColor.systemBlue
+                self.accessoryType = UITableViewCell.AccessoryType.checkmark
+                self.tintColor = UIColor.white
+                self.backgroundColor = UIColor.systemBlue
+                self.contentView.backgroundColor = UIColor.systemBlue
+                self.nameLabel.textColor = UIColor.white
+            }
+            else {
+                self.backgroundColor = initialColor
+                self.accessoryView?.backgroundColor = UIColor.clear
+                self.accessoryType = UITableViewCell.AccessoryType.none
+                self.contentView.backgroundColor = initialColor
+                self.nameLabel.textColor = UIColor.black
+            }
+
+            self.layoutIfNeeded()
+            self.layoutSubviews()
         }
         
-        self.layoutIfNeeded()
-        self.layoutSubviews()
+        
                 
-        // Configure the view for the selected state
     }
     
-    
+    func setDisabled(disabled: Bool) {
+        self.disabled = disabled
+        
+        if (self.disabled) {
+            self.nameLabel.textColor = UIColor.gray
+            self.isUserInteractionEnabled = false
+        }
+    }
 }
