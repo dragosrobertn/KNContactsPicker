@@ -20,7 +20,7 @@ open class KNContactsPickerController: UITableViewController {
     
     var selected: Set<CNContact> = [] {
         willSet(newValue) {
-            self.updateTitleWithSelected(contactsCount: newValue.count)
+            self.updateSelectedIndicator(contactsCount: newValue.count)
         }
     }
     
@@ -39,9 +39,30 @@ open class KNContactsPickerController: UITableViewController {
 
         self.tableView.register(KNContactCell.self, forCellReuseIdentifier: CELL_ID)
         self.navigationItem.title = settings.pickerTitle
-        self.updateTitleWithSelected()
+        self.updateSelectedIndicator()
         self.initializeSearchBar()
+        self.configureButtons()
         self.fetchContacts()
+    }
+    
+    func configureButtons() {
+        let rightButton: UIButton = UIButton(type: .system)
+        rightButton.setTitle("Done ", for: .normal)
+        rightButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        rightButton.addTarget(self, action: #selector(finish), for: .touchUpInside)
+        
+        if #available(iOS 13.0, *) {
+            let contactSelectImage = UIImage(systemName: "person.crop.circle.fill.badge.checkmark")
+            rightButton.setImage(contactSelectImage, for: .normal)
+            rightButton.semanticContentAttribute = .forceRightToLeft
+        }
+        
+        rightButton.sizeToFit()
+        
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+        self.navigationItem.leftBarButtonItem = self.getLeftButton(count: 0)
+        
     }
     
     func initializeSearchBar() {
@@ -71,12 +92,38 @@ open class KNContactsPickerController: UITableViewController {
         
    }
     
-    func updateTitleWithSelected(contactsCount: Int = 0) {
-        let title = contactsCount > 0 ? String.init(format: "Search contacts / %d selected", contactsCount) : settings.searchBarPlaceholder
+    func getLeftButton(count: Int) -> UIBarButtonItem {
+        let leftButton: UIButton = UIButton(type: .system)
+        leftButton.setTitle(String.init(format: "%d", count), for: .normal)
+        leftButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        leftButton.tintColor = .gray
+        leftButton.isUserInteractionEnabled = false
         
-//        self.searchResultsController.navigationItem.title = ""
-//        self.navigationItem.title = title
-        searchResultsController.searchBar.placeholder = title
+        if #available(iOS 13.0, *) {
+           var string = "person"
+            if (count == 1 ) {
+                string = "person.fill"
+            }
+            else if (count == 2 || count == 3){
+                string = String.init(format: "person.%d.fill", count)
+            } else if (count > 3){
+                string = "person.3.fill"
+            }
+            
+           let contactsImage = UIImage(systemName: string)
+           leftButton.setImage(contactsImage, for: .normal)
+       }
+        leftButton.sizeToFit()
+        
+        return UIBarButtonItem(customView: leftButton)
+    }
+    
+    @objc func finish() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func updateSelectedIndicator(contactsCount: Int = 0) {
+        self.navigationItem.leftBarButtonItem = self.getLeftButton(count: contactsCount)
     }
 
     override open func numberOfSections(in tableView: UITableView) -> Int {
