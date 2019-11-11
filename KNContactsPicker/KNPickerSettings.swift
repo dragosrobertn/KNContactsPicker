@@ -8,10 +8,20 @@
 
 import Foundation
 
+public enum KNContactsPickerMode {
+    case single
+    case multiple
+}
+
 public struct KNPickerSettings {
     
     public var pickerTitle: String = "Contacts"
     public var searchBarPlaceholder: String = "Search contacts"
     
+    public var pickerSelectionMode: KNContactsPickerMode = .single
+    
+    public init() {
+        
+    }
     
 }

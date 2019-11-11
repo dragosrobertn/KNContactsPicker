@@ -14,7 +14,7 @@ class KNContactCell: UITableViewCell {
     var initialColor: UIColor {
          get {
              if #available(iOS 13.0, *) {
-                 return UIColor.systemBackground
+                 return UIColor.secondarySystemFill
              }
              return UIColor.white
          }
@@ -32,8 +32,8 @@ class KNContactCell: UITableViewCell {
         img.contentMode = .scaleAspectFill // image will never be strecthed vertially or horizontally
         img.translatesAutoresizingMaskIntoConstraints = false // enable autolayout
         img.layer.cornerRadius = 20
-        img.layer.borderWidth = 2
-        img.layer.borderColor = UIColor.white.cgColor
+//        img.layer.borderWidth = 2
+//        img.layer.borderColor = UIColor.white.cgColor
         img.clipsToBounds = true
        return img
     }()
@@ -41,7 +41,11 @@ class KNContactCell: UITableViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            label.textColor = UIColor.label
+        } else {
+            label.textColor = UIColor.black
+        }
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -59,6 +63,10 @@ class KNContactCell: UITableViewCell {
         nameLabel.leadingAnchor.constraint(equalTo:self.profileImageView.trailingAnchor, constant:10).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:10).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant:40).isActive = true
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.minimumScaleFactor = CGFloat(0.5)
+//        nameLabel.allowsDefaultTighteningForTruncation = .
+        
         
         self.selectionStyle = .none
      }
@@ -85,7 +93,7 @@ class KNContactCell: UITableViewCell {
                 self.accessoryView?.backgroundColor = UIColor.clear
                 self.accessoryType = UITableViewCell.AccessoryType.none
                 self.contentView.backgroundColor = initialColor
-                self.nameLabel.textColor = UIColor.black
+               // self.nameLabel.textColor = UIColor.black
             }
 
             self.layoutIfNeeded()

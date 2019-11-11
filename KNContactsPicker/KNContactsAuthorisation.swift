@@ -8,7 +8,7 @@
 import UIKit
 import Contacts
 
-enum ContactFetchingError: Error {
+public enum KNContactFetchingError: Error {
     // When access was already requested but denied
     case insufficientAccess
     
@@ -28,10 +28,10 @@ enum ContactFetchingError: Error {
 class KNContactsAuthorisation {
     static let contactStore = CNContactStore()
     
-    static func requestAccess() -> Result<[CNContact], ContactFetchingError> {
+    static func requestAccess() -> Result<[CNContact], KNContactFetchingError> {
        
         
-        var result: Result<[CNContact], ContactFetchingError> = Result.failure(.pendingAuthorisation)
+        var result: Result<[CNContact], KNContactFetchingError> = Result.failure(.pendingAuthorisation)
         
         switch CNContactStore.authorizationStatus(for: .contacts) {
         

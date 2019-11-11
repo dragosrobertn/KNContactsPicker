@@ -9,14 +9,18 @@
 import UIKit
 import Contacts
 
-open class KNContactsPickerController: UITableViewController {
+class KNContactsPickerController: UITableViewController {
     public var settings: KNPickerSettings = KNPickerSettings()
+    public var delegate: KNContactPickingDelegate?
     
     let CELL_ID = "KNContactCell"
     let formatter =  CNContactFormatter()
     
     var contacts: [CNContact] = []
     var filtered: [CNContact] = []
+    
+    var sortedContacts: [String: [CNContact]] = [:]
+    var sections: [String] = []
     
     var selected: Set<CNContact> = [] {
         willSet(newValue) {
@@ -38,11 +42,12 @@ open class KNContactsPickerController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.register(KNContactCell.self, forCellReuseIdentifier: CELL_ID)
+        self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.title = settings.pickerTitle
         self.updateSelectedIndicator()
         self.initializeSearchBar()
         self.configureButtons()
-        self.fetchContacts()
+//        self.fetchContacts()
     }
     
     func configureButtons() {
@@ -119,7 +124,20 @@ open class KNContactsPickerController: UITableViewController {
     }
     
     @objc func finish() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: {
+            if self.selected.count > 1 {
+                self.delegate?.contactPicker(didSelect: Array(self.selected))
+            }
+            else {
+                guard let onlyContact = Array(self.selected).first else {
+                    let error: Error = KNContactFetchingError.fetchRequestFailed
+                    return (self.delegate?.contactPicker(didFailPicking: error))!
+                }
+                
+                self.delegate?.contactPicker(didSelect: onlyContact)
+            }
+           
+        })
     }
     
     func updateSelectedIndicator(contactsCount: Int = 0) {
@@ -127,11 +145,14 @@ open class KNContactsPickerController: UITableViewController {
     }
 
     override open func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if isFiltering {
+            return 1
+        }
+        return self.sections.count
     }
     
     override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return isFiltering ? "Results" : "Contacts"
+        return isFiltering ? "Results" : self.sections[section]
     }
 
     override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,9 +160,9 @@ open class KNContactsPickerController: UITableViewController {
           return filtered.count
         }
         
-        return contacts.count
+        return self.sortedContacts[self.sections[section]]?.count ?? 0
     }
-
+    
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! KNContactCell
         let contact = self.getContact(at: indexPath)
@@ -172,7 +193,13 @@ open class KNContactsPickerController: UITableViewController {
     }
     
     func getContact(at indexPath: IndexPath) -> CNContact {
-        return isFiltering ? filtered[indexPath.row] : contacts[indexPath.row]
+        if isFiltering {
+            return filtered[indexPath.row]
+        }
+        else {
+            let sectionContact = self.sortedContacts[self.sections[indexPath.section]]
+            return sectionContact![indexPath.row]
+        }
     }
     
     override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -180,40 +207,22 @@ open class KNContactsPickerController: UITableViewController {
         self.toggleSelected(contact)
         self.tableView.reloadData()
     }
-    
-    func fetchContacts() {
-        
-        switch KNContactsAuthorisation.requestAccess() {
-            
-        case .success(let resultContacts):
-                print("Success")
-                self.contacts = resultContacts.sorted(by: {(c1, c2) in c1.familyName < c2.familyName })
-                self.tableView.reloadData()
-            
-        case .failure(let failureReason):
-                print("Failure")
-                if failureReason != .pendingAuthorisation {
-                    self.dismiss(animated: true)
-                    print(failureReason)
-                }
-                
-                break
-        }
-    }
-    
-    func filterContentForSearchText(_ searchText: String) {
-        self.filtered = contacts.filter({( currentContact: CNContact) -> Bool in
-            return (currentContact.getFullName(using: formatter).lowercased().contains(searchText.lowercased()))
-        })
-        
-        self.tableView.reloadData()
-    }
 
 }
 
 extension KNContactsPickerController: UISearchResultsUpdating {
     
+    func filterContentForSearchText(_ searchText: String) {
+        let filteredContacts = self.contacts.filter({( currentContact: CNContact) -> Bool in
+            return (currentContact.getFullName(using: formatter).lowercased().contains(searchText.lowercased()))
+        })
+        let outcome = KNContactUtils.sortContactsIntoSections(contacts: filteredContacts, sortingType: .givenName)
+        self.filtered = outcome.sortedContacts
+    }
+
+    
     public func updateSearchResults(for searchController: UISearchController) {
         self.filterContentForSearchText(searchController.searchBar.text!)
+         self.tableView.reloadData()
     }
 }
