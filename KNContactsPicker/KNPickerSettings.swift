@@ -20,8 +20,6 @@ public struct KNPickerSettings {
     
     public var pickerSelectionMode: KNContactsPickerMode = .single
     
-    public init() {
-        
-    }
+    public init() {}
     
 }

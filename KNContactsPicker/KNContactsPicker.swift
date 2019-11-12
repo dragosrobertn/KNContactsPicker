@@ -53,12 +53,12 @@ open class KNContactsPicker: UINavigationController {
         switch KNContactsAuthorisation.requestAccess() {
             
         case .success(let resultContacts):
-                print("Success")
+                //print("Success")
                 self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: resultContacts, sortingType: .familyName)
                
             
         case .failure(let failureReason):
-                print("Failure")
+                //print("Failure")
                 if failureReason != .pendingAuthorisation {
                     self.dismiss(animated: true, completion: {
                         self.contactPickingDelegate?.contactPicker(didFailPicking: failureReason)

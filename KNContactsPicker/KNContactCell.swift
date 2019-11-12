@@ -74,6 +74,11 @@ class KNContactCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
        super.init(coder: aDecoder)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disabled = false
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         if (!disabled) {
@@ -114,8 +119,20 @@ class KNContactCell: UITableViewCell {
         self.disabled = disabled
         
         if (self.disabled) {
-            self.nameLabel.textColor = UIColor.gray
+            if #available(iOS 13.0, *) {
+                self.nameLabel.textColor = UIColor.secondaryLabel
+            } else {
+                self.nameLabel.textColor = UIColor.gray
+            }
             self.isUserInteractionEnabled = false
+        }
+        else {
+            if #available(iOS 13.0, *) {
+                self.nameLabel.textColor = UIColor.label
+            } else {
+                self.nameLabel.textColor = UIColor.black
+            }
+            self.isUserInteractionEnabled = true
         }
     }
     

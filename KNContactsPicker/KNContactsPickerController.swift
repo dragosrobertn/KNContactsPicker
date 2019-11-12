@@ -22,9 +22,15 @@ class KNContactsPickerController: UITableViewController {
     var sortedContacts: [String: [CNContact]] = [:]
     var sections: [String] = []
     
-    var selected: Set<CNContact> = [] {
+    var selectedContacts: Set<CNContact> = [] {
         willSet(newValue) {
             self.updateSelectedIndicator(contactsCount: newValue.count)
+        }
+    }
+    
+    var shouldDisableSelection: Bool {
+        get {
+            return settings.pickerSelectionMode == .single && selectedContacts.count == 1
         }
     }
     
@@ -124,11 +130,11 @@ class KNContactsPickerController: UITableViewController {
     
     @objc func finish() {
         self.navigationController?.dismiss(animated: true, completion: {
-            if self.selected.count > 1 {
-                self.delegate?.contactPicker(didSelect: Array(self.selected))
+            if self.selectedContacts.count > 1 {
+                self.delegate?.contactPicker(didSelect: Array(self.selectedContacts))
             }
             else {
-                guard let onlyContact = Array(self.selected).first else {
+                guard let onlyContact = Array(self.selectedContacts).first else {
                     let error: Error = KNContactFetchingError.fetchRequestFailed
                     return (self.delegate?.contactPicker(didFailPicking: error))!
                 }
@@ -159,15 +165,15 @@ class KNContactsPickerController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! KNContactCell
         let contact = self.getContact(at: indexPath)
         let image = contact.getImageOrInitials(bounds: cell.profileImageView.bounds, scaled: cell.imageView?.shouldScale ?? true)
-        let disabled = false
+        let disabled = shouldDisableSelection && !selectedContacts.contains(contact)
+        let selected = selectedContacts.contains(contact)
         
         cell.nameLabel.text = contact.getFullName(using: formatter)
         cell.profileImageView.image = image
         cell.profileImageView.highlightedImage = image
         
-        cell.setSelected(selected.contains(contact), animated: false)
         cell.setDisabled(disabled: disabled)
- 
+        cell.setSelected(selected, animated: false)
         return cell
     }
     
@@ -176,10 +182,10 @@ class KNContactsPickerController: UITableViewController {
     }
     
     fileprivate func toggleSelected(_ contact: CNContact) {
-        if selected.contains(contact) {
-            selected.remove(contact)
+        if selectedContacts.contains(contact) {
+            selectedContacts.remove(contact)
         } else {
-            selected.insert(contact)
+            selectedContacts.insert(contact)
         }
     }
     
