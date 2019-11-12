@@ -30,7 +30,7 @@ class KNContactsPickerController: UITableViewController {
     
     var shouldDisableSelection: Bool {
         get {
-            return settings.pickerSelectionMode == .single && selectedContacts.count == 1
+            return settings.selectionMode == .single && selectedContacts.count == 1
         }
     }
     
@@ -150,11 +150,11 @@ class KNContactsPickerController: UITableViewController {
     }
 
     override open func numberOfSections(in tableView: UITableView) -> Int {
-        return  isFiltering ? 1 : self.sections.count
+        return isFiltering ? 1 : self.sections.count
     }
     
     override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return isFiltering ? "Results" : self.sections[section]
+        return isFiltering ? "Top name matches" : self.sections[section]
     }
 
     override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

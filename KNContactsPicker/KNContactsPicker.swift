@@ -18,28 +18,12 @@ open class KNContactsPicker: UINavigationController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        
-        var style: UITableView.Style
-        if #available(iOS 13.0, *) {
-            style = UITableView.Style.insetGrouped
-        } else {
-            style = UITableView.Style.grouped
-        }
         self.fetchContacts()
-        
-        let controller = KNContactsPickerController(style: style)
-        
-        controller.settings = settings
-        controller.delegate = contactPickingDelegate
-        
-        controller.contacts = sortingOutcome?.sortedContacts ?? []
-        controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
-        controller.sections = sortingOutcome?.sections ?? []
         
         self.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
         
-        self.viewControllers.append(controller)
+        self.viewControllers.append(self.getContactsPicker())
     }
     
     convenience public init(delegate: KNContactPickingDelegate?, settings: KNPickerSettings) {
@@ -48,25 +32,41 @@ open class KNContactsPicker: UINavigationController {
         self.settings = settings
     }
     
+    func getContactsPicker() -> KNContactsPickerController {
+        var style: UITableView.Style {
+            get {
+                if #available(iOS 13.0, *) {
+                    return UITableView.Style.insetGrouped
+                } else {
+                    return UITableView.Style.grouped
+                }
+            }
+        }
+        
+        let controller = KNContactsPickerController(style: style)
+
+        controller.settings = settings
+        controller.delegate = contactPickingDelegate
+
+        controller.contacts = sortingOutcome?.sortedContacts ?? []
+        controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
+        controller.sections = sortingOutcome?.sections ?? []
+               
+        return controller
+    }
+    
     func fetchContacts() {
         
         switch KNContactsAuthorisation.requestAccess() {
-            
         case .success(let resultContacts):
-                //print("Success")
-                self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: resultContacts, sortingType: .familyName)
-               
+            self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: resultContacts, sortingType: .familyName)
             
         case .failure(let failureReason):
-                //print("Failure")
-                if failureReason != .pendingAuthorisation {
-                    self.dismiss(animated: true, completion: {
-                        self.contactPickingDelegate?.contactPicker(didFailPicking: failureReason)
-                    })
-                    print(failureReason)
-                }
-                
-                break
+            if failureReason != .pendingAuthorisation {
+                self.dismiss(animated: true, completion: {
+                    self.contactPickingDelegate?.contactPicker(didFailPicking: failureReason)
+                })
+            }
         }
     }
     

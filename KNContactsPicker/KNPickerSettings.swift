@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum KNContactsPickerMode {
     case single
@@ -17,8 +18,8 @@ public struct KNPickerSettings {
     
     public var pickerTitle: String = "Contacts"
     public var searchBarPlaceholder: String = "Search contacts"
-    
-    public var pickerSelectionMode: KNContactsPickerMode = .single
+
+    public var selectionMode: KNContactsPickerMode = .single
     
     public init() {}
     
