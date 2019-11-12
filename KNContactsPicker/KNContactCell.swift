@@ -14,7 +14,9 @@ class KNContactCell: UITableViewCell {
     var initialColor: UIColor {
          get {
              if #available(iOS 13.0, *) {
-                 return UIColor.secondarySystemFill
+                return self.traitCollection.userInterfaceStyle == .dark ?
+                    UIColor.secondarySystemBackground :
+                    UIColor.systemBackground
              }
              return UIColor.white
          }
@@ -29,11 +31,10 @@ class KNContactCell: UITableViewCell {
                            y: img.frame.origin.y ,
                            width: 40,
                            height: img.frame.size.height )
-        img.contentMode = .scaleAspectFill // image will never be strecthed vertially or horizontally
-        img.translatesAutoresizingMaskIntoConstraints = false // enable autolayout
+        img.contentMode = .scaleAspectFill
+         // enable autolayout
+        img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 20
-//        img.layer.borderWidth = 2
-//        img.layer.borderColor = UIColor.white.cgColor
         img.clipsToBounds = true
        return img
     }()
@@ -61,12 +62,11 @@ class KNContactCell: UITableViewCell {
         profileImageView.heightAnchor.constraint(equalToConstant:40).isActive = true
         nameLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo:self.profileImageView.trailingAnchor, constant:10).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:10).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:-10).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant:40).isActive = true
         nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.minimumScaleFactor = CGFloat(0.5)
-//        nameLabel.allowsDefaultTighteningForTruncation = .
-        
+        nameLabel.minimumScaleFactor = CGFloat(0.8)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: nameLabel.font.pointSize)
         
         self.selectionStyle = .none
      }
@@ -76,32 +76,38 @@ class KNContactCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-       
-        
         if (!disabled) {
             super.setSelected(selected, animated: animated)
-            if (self.isSelected) {
-                self.accessoryView?.backgroundColor = UIColor.systemBlue
-                self.accessoryType = UITableViewCell.AccessoryType.checkmark
-                self.tintColor = UIColor.white
-                self.backgroundColor = UIColor.systemBlue
-                self.contentView.backgroundColor = UIColor.systemBlue
-                self.nameLabel.textColor = UIColor.white
-            }
-            else {
-                self.backgroundColor = initialColor
-                self.accessoryView?.backgroundColor = UIColor.clear
-                self.accessoryType = UITableViewCell.AccessoryType.none
-                self.contentView.backgroundColor = initialColor
-               // self.nameLabel.textColor = UIColor.black
-            }
-
-            self.layoutIfNeeded()
-            self.layoutSubviews()
+            self.setAppropriateStyle()
         }
-        
-        
-                
+    }
+    
+    func setAppropriateStyle() {
+        self.isSelected ? self.setCellToSelectedStyle() : self.setCellToUnselectedStyle()
+        self.layoutIfNeeded()
+        self.layoutSubviews()
+    }
+    
+    func setCellToSelectedStyle() {
+        self.accessoryView?.backgroundColor = UIColor.systemBlue
+        self.contentView.backgroundColor = UIColor.systemBlue
+        self.accessoryType = UITableViewCell.AccessoryType.checkmark
+        self.tintColor = UIColor.white
+        self.backgroundColor = UIColor.systemBlue
+
+        self.nameLabel.textColor = UIColor.white
+    }
+    
+    func setCellToUnselectedStyle() {
+        self.backgroundColor = initialColor
+        self.accessoryView?.backgroundColor = UIColor.clear
+        self.accessoryType = UITableViewCell.AccessoryType.none
+        self.contentView.backgroundColor = initialColor
+        if #available(iOS 13.0, *) {
+           self.nameLabel.textColor = UIColor.label
+        } else {
+           self.nameLabel.textColor = UIColor.black
+        }
     }
     
     func setDisabled(disabled: Bool) {
@@ -110,6 +116,14 @@ class KNContactCell: UITableViewCell {
         if (self.disabled) {
             self.nameLabel.textColor = UIColor.gray
             self.isUserInteractionEnabled = false
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        guard let previous = previousTraitCollection else { return }
+        
+        if traitCollection.userInterfaceStyle != previous.userInterfaceStyle {
+            self.setAppropriateStyle()
         }
     }
 }

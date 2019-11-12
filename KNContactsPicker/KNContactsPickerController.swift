@@ -17,7 +17,7 @@ class KNContactsPickerController: UITableViewController {
     let formatter =  CNContactFormatter()
     
     var contacts: [CNContact] = []
-    var filtered: [CNContact] = []
+    var filteredContacts: [CNContact] = []
     
     var sortedContacts: [String: [CNContact]] = [:]
     var sections: [String] = []
@@ -47,7 +47,6 @@ class KNContactsPickerController: UITableViewController {
         self.updateSelectedIndicator()
         self.initializeSearchBar()
         self.configureButtons()
-//        self.fetchContacts()
     }
     
     func configureButtons() {
@@ -145,10 +144,7 @@ class KNContactsPickerController: UITableViewController {
     }
 
     override open func numberOfSections(in tableView: UITableView) -> Int {
-        if isFiltering {
-            return 1
-        }
-        return self.sections.count
+        return  isFiltering ? 1 : self.sections.count
     }
     
     override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -156,11 +152,7 @@ class KNContactsPickerController: UITableViewController {
     }
 
     override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-          return filtered.count
-        }
-        
-        return self.sortedContacts[self.sections[section]]?.count ?? 0
+        return isFiltering ? self.filteredContacts.count : self.sortedContacts[self.sections[section]]?.count ?? 0
     }
     
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -184,7 +176,6 @@ class KNContactsPickerController: UITableViewController {
     }
     
     fileprivate func toggleSelected(_ contact: CNContact) {
-       
         if selected.contains(contact) {
             selected.remove(contact)
         } else {
@@ -194,7 +185,7 @@ class KNContactsPickerController: UITableViewController {
     
     func getContact(at indexPath: IndexPath) -> CNContact {
         if isFiltering {
-            return filtered[indexPath.row]
+            return self.filteredContacts[indexPath.row]
         }
         else {
             let sectionContact = self.sortedContacts[self.sections[indexPath.section]]
@@ -217,7 +208,7 @@ extension KNContactsPickerController: UISearchResultsUpdating {
             return (currentContact.getFullName(using: formatter).lowercased().contains(searchText.lowercased()))
         })
         let outcome = KNContactUtils.sortContactsIntoSections(contacts: filteredContacts, sortingType: .givenName)
-        self.filtered = outcome.sortedContacts
+        self.filteredContacts = outcome.sortedContacts
     }
 
     

@@ -14,8 +14,8 @@ extension CNContact {
         guard self.imageDataAvailable, let image = self.getImage()
         else {
             let gradientColors = GradientColors(
-                top: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1),
-                bottom: #colorLiteral(red: 0, green: 0.4881725907, blue: 1, alpha: 1)
+                top: #colorLiteral(red: 0.2199510634, green: 0.2199510634, blue: 0.2199510634, alpha: 1),
+                bottom: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             )
             
 
