@@ -12,6 +12,7 @@
 		154D96712368DF03004C1DAC /* KNPickerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154D96702368DF03004C1DAC /* KNPickerSettings.swift */; };
 		155EBE2B23677934002FD8D4 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155EBE2A23677934002FD8D4 /* UIImageView+Ext.swift */; };
 		155EBE2D23677AF4002FD8D4 /* String+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155EBE2C23677AF4002FD8D4 /* String+Initials.swift */; };
+		15626DDC237CAC6A00286573 /* KNContactPickerButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15626DDB237CAC6A00286573 /* KNContactPickerButtons.swift */; };
 		15A3811F2365BB860039DC59 /* UIImage+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3811E2365BB860039DC59 /* UIImage+Initials.swift */; };
 		15A381282366E9850039DC59 /* KNContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A381262366E9850039DC59 /* KNContactCell.swift */; };
 		15D710A22361F2E300EB9F6D /* KNContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */; };
@@ -42,6 +43,7 @@
 		154D96702368DF03004C1DAC /* KNPickerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNPickerSettings.swift; sourceTree = "<group>"; };
 		155EBE2A23677934002FD8D4 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		155EBE2C23677AF4002FD8D4 /* String+Initials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Initials.swift"; sourceTree = "<group>"; };
+		15626DDB237CAC6A00286573 /* KNContactPickerButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactPickerButtons.swift; sourceTree = "<group>"; };
 		15A3811E2365BB860039DC59 /* UIImage+Initials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Initials.swift"; sourceTree = "<group>"; };
 		15A381262366E9850039DC59 /* KNContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNContactCell.swift; sourceTree = "<group>"; };
 		15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactsPicker.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				155EBE29236778E3002FD8D4 /* Extensions */,
 				15FC45CA235F7FB500AF13C4 /* KNContactsPickerController.swift */,
+				15626DDB237CAC6A00286573 /* KNContactPickerButtons.swift */,
 				154D96702368DF03004C1DAC /* KNPickerSettings.swift */,
 				15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */,
 				15FC45D0235FA93800AF13C4 /* KNContactsUtils.swift */,
@@ -249,6 +252,7 @@
 				15FC45CB235F7FB500AF13C4 /* KNContactsPickerController.swift in Sources */,
 				15FC45D7235FB0A800AF13C4 /* UIColor+Ext.swift in Sources */,
 				155EBE2B23677934002FD8D4 /* UIImageView+Ext.swift in Sources */,
+				15626DDC237CAC6A00286573 /* KNContactPickerButtons.swift in Sources */,
 				15A381282366E9850039DC59 /* KNContactCell.swift in Sources */,
 				15A3811F2365BB860039DC59 /* UIImage+Initials.swift in Sources */,
 				15D710A22361F2E300EB9F6D /* KNContactsPicker.swift in Sources */,

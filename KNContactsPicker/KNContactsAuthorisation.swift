@@ -55,7 +55,10 @@ class KNContactsAuthorisation {
             
             do {
                 try self.contactStore.enumerateContacts(with: fetchRequestKeys, usingBlock: { (contact, stop) -> Void in
-                    allContacts.append(contact)
+                    if contact.organizationName == "KINN" {
+                        allContacts.append(contact)
+                    }
+                   
                 })
               
                 return Result.success(allContacts)

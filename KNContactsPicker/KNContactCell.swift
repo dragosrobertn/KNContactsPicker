@@ -122,7 +122,7 @@ class KNContactCell: UITableViewCell {
             if #available(iOS 13.0, *) {
                 self.nameLabel.textColor = UIColor.secondaryLabel
             } else {
-                self.nameLabel.textColor = UIColor.gray
+                self.nameLabel.textColor = UIColor.lightGray
             }
             self.isUserInteractionEnabled = false
         }

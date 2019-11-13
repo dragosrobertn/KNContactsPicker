@@ -14,12 +14,20 @@ public enum KNContactsPickerMode {
     case multiple
 }
 
+public enum KNContactSubtitleValue {
+    case none
+    case phoneNumber
+    case emailAddress
+    case company
+}
+
 public struct KNPickerSettings {
     
     public var pickerTitle: String = "Contacts"
     public var searchBarPlaceholder: String = "Search contacts"
 
     public var selectionMode: KNContactsPickerMode = .single
+    public var subtitleDisplay: KNContactSubtitleValue = .none
     
     public init() {}
     

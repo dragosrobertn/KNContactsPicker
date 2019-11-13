@@ -51,7 +51,12 @@ open class KNContactsPicker: UINavigationController {
         controller.contacts = sortingOutcome?.sortedContacts ?? []
         controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
         controller.sections = sortingOutcome?.sections ?? []
-               
+//        if #available(iOS 13.0, *) {
+//            controller.isModalInPresentation = true
+//        }
+//        else {
+//            controller.modalPresentationStyle = .fullScreen
+//        }
         return controller
     }
     
