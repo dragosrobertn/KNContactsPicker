@@ -165,6 +165,14 @@ class KNContactsPickerController: UITableViewController {
         self.toggleSelected(contact)
     }
     
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return self.sections
+    }
+    
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return index
+    }
+    
 }
 
 extension KNContactsPickerController: UISearchResultsUpdating {
