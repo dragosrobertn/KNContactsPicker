@@ -23,7 +23,10 @@ open class KNContactsPicker: UINavigationController {
         self.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
         
-        self.viewControllers.append(self.getContactsPicker())
+        let contactPickerController = self.getContactsPicker()
+        
+        self.presentationController?.delegate = contactPickerController
+        self.viewControllers.append(contactPickerController)
     }
     
     convenience public init(delegate: KNContactPickingDelegate?, settings: KNPickerSettings) {
@@ -47,16 +50,11 @@ open class KNContactsPicker: UINavigationController {
 
         controller.settings = settings
         controller.delegate = contactPickingDelegate
-
+        controller.presentationDelegate = self
         controller.contacts = sortingOutcome?.sortedContacts ?? []
         controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
         controller.sections = sortingOutcome?.sections ?? []
-//        if #available(iOS 13.0, *) {
-//            controller.isModalInPresentation = true
-//        }
-//        else {
-//            controller.modalPresentationStyle = .fullScreen
-//        }
+
         return controller
     }
     
@@ -73,6 +71,19 @@ open class KNContactsPicker: UINavigationController {
                 })
             }
         }
+    }
+    
+}
+
+extension KNContactsPicker: KNContactsPickerControllerPresentationDelegate {
+    func contactPickerDidCancel() {
+        self.dismiss(animated: true, completion: {
+            self.contactPickingDelegate?.contactPicker(didFailPicking: KNContactFetchingError.userCancelled)
+        })
+    }
+    
+    func contactPickerDidFinish() {
+        
     }
     
 }

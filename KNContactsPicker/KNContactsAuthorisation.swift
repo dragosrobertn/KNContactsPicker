@@ -23,6 +23,9 @@ public enum KNContactFetchingError: Error {
     
     // The fetching
     case fetchRequestFailed
+    
+    //
+    case userCancelled
 }
 
 class KNContactsAuthorisation {
@@ -55,11 +58,7 @@ class KNContactsAuthorisation {
             
             do {
                 try self.contactStore.enumerateContacts(with: fetchRequestKeys, usingBlock: { (contact, stop) -> Void in
-//                    if contact.organizationName == "KINN" {
-//                        allContacts.append(contact)
-//                    }
                     allContacts.append(contact)
-                   
                 })
               
                 return Result.success(allContacts)

@@ -9,9 +9,15 @@
 import UIKit
 import Contacts
 
+protocol KNContactsPickerControllerPresentationDelegate {
+    func contactPickerDidCancel()
+    func contactPickerDidFinish()
+}
+
 class KNContactsPickerController: UITableViewController {
     public var settings: KNPickerSettings = KNPickerSettings()
     public var delegate: KNContactPickingDelegate?
+    public var presentationDelegate: KNContactsPickerControllerPresentationDelegate?
     
     let CELL_ID = "KNContactCell"
     let formatter =  CNContactFormatter()
@@ -53,19 +59,26 @@ class KNContactsPickerController: UITableViewController {
         self.tableView.register(KNContactCell.self, forCellReuseIdentifier: CELL_ID)
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.title = settings.pickerTitle
+        self.tableView.sectionIndexColor = UIColor.lightGray
         self.initializeSearchBar()
         self.configureButtons(count: self.selectedContacts.count)
     }
     
     func configureButtons(count: Int) {
         self.navigationItem.rightBarButtonItem = KNContactPickerButtons.completeSelection(count, action: #selector(completeSelection), target: self)
-        self.navigationItem.leftBarButtonItem = KNContactPickerButtons.clearSelection(count, action: #selector(clearSelected), target: self)
+        
+        if count > 0 {
+             self.navigationItem.leftBarButtonItem = KNContactPickerButtons.clearSelection(count, action: #selector(clearSelected), target: self)
+        }
+        else {
+            self.navigationItem.leftBarButtonItem = nil
+        }
     }
     
     func initializeSearchBar() {
         
         searchResultsController.searchResultsUpdater = self
-
+        
         searchResultsController.hidesNavigationBarDuringPresentation = false
         searchResultsController.obscuresBackgroundDuringPresentation = false
         searchResultsController.navigationItem.largeTitleDisplayMode = .always
@@ -150,7 +163,36 @@ class KNContactsPickerController: UITableViewController {
         }
     }
     
-    func getContact(at indexPath: IndexPath) -> CNContact {
+    fileprivate func confirmCancel() {
+        let firstContactsName = selectedContacts.first?.getFullName(using: formatter) ?? ""
+            
+        
+        let message = (selectedContacts.count > 1 && !firstContactsName.isEmpty) ?
+            String(format: "You have selected %@ and %d other contacts.", firstContactsName, selectedContacts.count.advanced(by: -1)) :
+            String(format: "You have selected %@.", firstContactsName)
+
+        
+        
+        let alert = UIAlertController(title: "Dismiss", message: message, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Pick selected contacts", style: .default) { _ in
+//            self.presentationDelegate?.contactPickerDidFinish()
+            self.completeSelection()
+        })
+        
+        alert.addAction(UIAlertAction(title: "Discard", style: .destructive) { _ in
+            self.presentationDelegate?.contactPickerDidCancel()
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // The popover should point at the Cancel button
+        alert.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    fileprivate func getContact(at indexPath: IndexPath) -> CNContact {
         if isFiltering {
             return self.filteredContacts[indexPath.row]
         }
@@ -190,4 +232,17 @@ extension KNContactsPickerController: UISearchResultsUpdating {
         self.filterContentForSearchText(searchController.searchBar.text!)
         self.tableView.reloadData()
     }
+}
+
+
+extension KNContactsPickerController: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return selectedContacts.count == 0
+    }
+    
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        self.confirmCancel()
+    }
+    
 }
