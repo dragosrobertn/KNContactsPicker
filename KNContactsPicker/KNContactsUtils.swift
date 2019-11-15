@@ -10,6 +10,10 @@ import Contacts
 
 typealias KNSortingOutcome = (sections: [String], sortedContacts: [CNContact], contactsSortedInSections: [String: [CNContact]])
 
+public typealias KNContactEnablingPredicate = (_ contact: CNContact) -> Bool
+
+public typealias KNContactDisablingPredicate = (_ contact: CNContact) -> Bool
+
 struct KNContactUtils {
     
     static func getContactsKeyDescriptors() -> [CNKeyDescriptor] {

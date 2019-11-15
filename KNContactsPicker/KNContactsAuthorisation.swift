@@ -31,7 +31,7 @@ public enum KNContactFetchingError: Error {
 class KNContactsAuthorisation {
     static let contactStore = CNContactStore()
     
-    static func requestAccess() -> Result<[CNContact], KNContactFetchingError> {
+    static func requestAccess(conditionToEnableContact: @escaping KNContactEnablingPredicate) -> Result<[CNContact], KNContactFetchingError> {
        
         
         var result: Result<[CNContact], KNContactFetchingError> = Result.failure(.pendingAuthorisation)
@@ -44,7 +44,7 @@ class KNContactsAuthorisation {
         case CNAuthorizationStatus.notDetermined:
             
             contactStore.requestAccess(for: .contacts, completionHandler: { (granted, error) -> Void in
-                result = granted ? self.requestAccess() : Result.failure(.accessNotGranted)
+                result = granted ? self.requestAccess(conditionToEnableContact: conditionToEnableContact) : Result.failure(.accessNotGranted)
             })
             
             return result
@@ -59,7 +59,7 @@ class KNContactsAuthorisation {
             do {
                 try self.contactStore.enumerateContacts(with: fetchRequestKeys, usingBlock: { (contact, stop) -> Void in
 //                    allContacts.append(contact)
-                    if contact.organizationName == "KINN" {
+                    if conditionToEnableContact(contact) {
                         allContacts.append(contact)
                     }
                 })

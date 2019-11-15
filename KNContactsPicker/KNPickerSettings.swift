@@ -27,6 +27,9 @@ public struct KNPickerSettings {
     // MARK: PICKER TOP SETTINGS
     public var pickerTitle: String = "Contacts"
     
+    public var conditionToEnableContact: KNContactEnablingPredicate = { _ in true }
+    public var conditionToDisableContact: KNContactDisablingPredicate = { _ in false }
+    
     // Enum value whether the contact picker should allow selecting multiple
     // or a single contact
     public var selectionMode: KNContactsPickerMode = .singleDeselectOthers

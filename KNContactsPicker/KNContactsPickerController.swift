@@ -142,7 +142,8 @@ class KNContactsPickerController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! KNContactCell
         let contact = self.getContact(at: indexPath)
         let image = contact.getImageOrInitials(bounds: cell.profileImageView.bounds, scaled: cell.imageView?.shouldScale ?? true)
-        let disabled = shouldDisableSelection && !selectedContacts.contains(contact)
+        let disabled = ( shouldDisableSelection && !selectedContacts.contains(contact) ) || settings.conditionToDisableContact(contact)
+        
         let selected = selectedContacts.contains(contact)
         
         cell.nameLabel.text = contact.getFullName(using: formatter)

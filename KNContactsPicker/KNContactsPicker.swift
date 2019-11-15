@@ -60,7 +60,7 @@ open class KNContactsPicker: UINavigationController {
     
     func fetchContacts() {
         
-        switch KNContactsAuthorisation.requestAccess() {
+        switch KNContactsAuthorisation.requestAccess(conditionToEnableContact: settings.conditionToEnableContact) {
         case .success(let resultContacts):
             self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: resultContacts, sortingType: .familyName)
             
