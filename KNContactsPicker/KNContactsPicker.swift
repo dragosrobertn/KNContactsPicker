@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 
 open class KNContactsPicker: UINavigationController {
-
+    
     var settings: KNPickerSettings = KNPickerSettings()
     var contactPickingDelegate: KNContactPickingDelegate?
     
@@ -47,14 +47,14 @@ open class KNContactsPicker: UINavigationController {
         }
         
         let controller = KNContactsPickerController(style: style)
-
+        
         controller.settings = settings
         controller.delegate = contactPickingDelegate
         controller.presentationDelegate = self
         controller.contacts = sortingOutcome?.sortedContacts ?? []
         controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
         controller.sections = sortingOutcome?.sections ?? []
-
+        
         return controller
     }
     
@@ -76,14 +76,32 @@ open class KNContactsPicker: UINavigationController {
 }
 
 extension KNContactsPicker: KNContactsPickerControllerPresentationDelegate {
-    func contactPickerDidCancel() {
+    
+    func contactPickerDidCancel(_ picker: KNContactsPickerController) {
         self.dismiss(animated: true, completion: {
             self.contactPickingDelegate?.contactPicker(didFailPicking: KNContactFetchingError.userCancelled)
         })
     }
     
-    func contactPickerDidFinish() {
+    func contactPickerDidSelect(_ picker: KNContactsPickerController) {
+        print("did select")
+        let contacts = picker.getSelectedContacts()
         
+        print(contacts.count)
+        self.dismiss(animated: true, completion: {
+            if contacts.count > 1 {
+                self.contactPickingDelegate?.contactPicker(didSelect: contacts)
+            }
+            else {
+                guard let onlyContact = contacts.first else {
+                    let error: Error = KNContactFetchingError.fetchRequestFailed
+                    return (self.contactPickingDelegate?.contactPicker(didFailPicking: error))!
+                }
+                
+                self.contactPickingDelegate?.contactPicker(didSelect: onlyContact)
+            }
+            
+        })
     }
     
 }

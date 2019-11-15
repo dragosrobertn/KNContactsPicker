@@ -10,8 +10,8 @@ import UIKit
 import Contacts
 
 protocol KNContactsPickerControllerPresentationDelegate {
-    func contactPickerDidCancel()
-    func contactPickerDidFinish()
+    func contactPickerDidCancel(_ picker: KNContactsPickerController)
+    func contactPickerDidSelect(_ picker: KNContactsPickerController)
 }
 
 class KNContactsPickerController: UITableViewController {
@@ -19,8 +19,8 @@ class KNContactsPickerController: UITableViewController {
     public var delegate: KNContactPickingDelegate?
     public var presentationDelegate: KNContactsPickerControllerPresentationDelegate?
     
-    let CELL_ID = "KNContactCell"
-    let formatter =  CNContactFormatter()
+    private let CELL_ID = "KNContactCell"
+    private let formatter =  CNContactFormatter()
     
     var contacts: [CNContact] = []
     var filteredContacts: [CNContact] = []
@@ -28,7 +28,7 @@ class KNContactsPickerController: UITableViewController {
     var sortedContacts: [String: [CNContact]] = [:]
     var sections: [String] = []
     
-    var selectedContacts: Set<CNContact> = [] {
+    private var selectedContacts: Set<CNContact> = [] {
         willSet(newValue) {
             self.configureButtons(count: newValue.count)
         }
@@ -38,19 +38,17 @@ class KNContactsPickerController: UITableViewController {
     }
     
     var shouldDisableSelection: Bool {
-        get {
-            return settings.selectionMode == .single && selectedContacts.count == 1
-        }
+        get { return settings.selectionMode == .singleDeselectOthers && selectedContacts.count == 1 }
     }
     
-    let searchResultsController = UISearchController(searchResultsController: nil)
+    var searchResultsController: UISearchController?
     
     var isSearchBarEmpty: Bool {
-        return searchResultsController.searchBar.text?.isEmpty ?? true
+        return searchResultsController?.searchBar.text?.isEmpty ?? true
     }
     
     var isFiltering: Bool {
-        return searchResultsController.isActive && !isSearchBarEmpty
+        return (searchResultsController?.isActive ?? false) && !isSearchBarEmpty
     }
     
     override open func viewDidLoad() {
@@ -60,77 +58,82 @@ class KNContactsPickerController: UITableViewController {
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.title = settings.pickerTitle
         self.tableView.sectionIndexColor = UIColor.lightGray
-        self.initializeSearchBar()
-        self.configureButtons(count: self.selectedContacts.count)
-    }
-    
-    func configureButtons(count: Int) {
-        self.navigationItem.rightBarButtonItem = KNContactPickerButtons.completeSelection(count, action: #selector(completeSelection), target: self)
         
-        if count > 0 {
-             self.navigationItem.leftBarButtonItem = KNContactPickerButtons.clearSelection(count, action: #selector(clearSelected), target: self)
-        }
-        else {
-            self.navigationItem.leftBarButtonItem = nil
-        }
-    }
-    
-    func initializeSearchBar() {
-        
-        searchResultsController.searchResultsUpdater = self
-        
-        searchResultsController.hidesNavigationBarDuringPresentation = false
-        searchResultsController.obscuresBackgroundDuringPresentation = false
-        searchResultsController.navigationItem.largeTitleDisplayMode = .always
-        searchResultsController.searchBar.placeholder = settings.searchBarPlaceholder
-        
-        definesPresentationContext = true
-        
-        if #available(iOS 13.0, *) {
-            
-            let transparentAppearance = UINavigationBarAppearance().copy()
-            transparentAppearance.configureWithTransparentBackground()
-            
-            searchResultsController.navigationItem.standardAppearance = transparentAppearance
-            searchResultsController.navigationItem.compactAppearance = transparentAppearance
-            searchResultsController.navigationItem.scrollEdgeAppearance = transparentAppearance
-        }
-        
+        //        self.tableView.allowsMultipleSelectionDuringEditing = true
+        self.searchResultsController = KNPickerElements.searchResultsController(settings: settings, controller: self)
         self.navigationItem.searchController = searchResultsController
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.hidesSearchBarWhenScrolling = false
         
+        self.configureButtons(count: self.selectedContacts.count)
+    }
+    
+    func configureButtons(count: Int) {
+        self.navigationItem.rightBarButtonItem = KNPickerElements.selectButton(count, action: #selector(completeSelection), target: self, settings: settings)
+        
+        if count > 0 {
+            self.navigationItem.leftBarButtonItem = KNPickerElements.clearButton(count, action: #selector(clearSelected), target: self, settings: settings)
+        } else {
+            self.navigationItem.leftBarButtonItem = nil
+        }
+    }
+    
+    public func getSelectedContacts() -> [CNContact] {
+        return Array(selectedContacts)
     }
     
     @objc func completeSelection() {
-        self.navigationController?.dismiss(animated: true, completion: {
-            if self.selectedContacts.count > 1 {
-                self.delegate?.contactPicker(didSelect: Array(self.selectedContacts))
-            }
-            else {
-                guard let onlyContact = Array(self.selectedContacts).first else {
-                    let error: Error = KNContactFetchingError.fetchRequestFailed
-                    return (self.delegate?.contactPicker(didFailPicking: error))!
-                }
-                
-                self.delegate?.contactPicker(didSelect: onlyContact)
-            }
-            
-        })
+        self.presentationDelegate?.contactPickerDidSelect(self)
     }
     
     @objc func clearSelected() {
         self.selectedContacts.removeAll()
     }
     
+    fileprivate func toggleSelected(_ contact: CNContact) {
+        if (settings.selectionMode == .singleReselect) {
+            self.clearSelected()
+            selectedContacts.insert(contact)
+        }
+        else if selectedContacts.contains(contact) {
+            selectedContacts.remove(contact)
+        } else {
+            selectedContacts.insert(contact)
+        }
+    }
+    
+    fileprivate func confirmCancel() {
+        let firstContactsName = selectedContacts.first?.getFullName(using: formatter) ?? ""
+        
+        let alert = KNPickerElements.pullToDismissAlert(count: selectedContacts.count,
+                                                        contactName: firstContactsName,
+                                                        settings: settings,
+                                                        controller: self)
+        //         The popover should point at the Cancel button
+        alert.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    fileprivate func getContact(at indexPath: IndexPath) -> CNContact {
+        if isFiltering {
+            return self.filteredContacts[indexPath.row]
+        }
+        else {
+            let sectionContact = self.sortedContacts[self.sections[indexPath.section]]
+            return sectionContact![indexPath.row]
+        }
+    }
+    
+    // MARK: Table View Sections
     override open func numberOfSections(in tableView: UITableView) -> Int {
         return isFiltering ? 1 : self.sections.count
     }
     
     override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return isFiltering ? "Top name matches" : self.sections[section]
+        return isFiltering ? settings.searchResultSectionTitle : self.sections[section]
     }
     
+    // MARK: Table View Rows
     override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isFiltering ? self.filteredContacts.count : self.sortedContacts[self.sections[section]]?.count ?? 0
     }
@@ -155,58 +158,12 @@ class KNContactsPickerController: UITableViewController {
         return 50
     }
     
-    fileprivate func toggleSelected(_ contact: CNContact) {
-        if selectedContacts.contains(contact) {
-            selectedContacts.remove(contact)
-        } else {
-            selectedContacts.insert(contact)
-        }
-    }
-    
-    fileprivate func confirmCancel() {
-        let firstContactsName = selectedContacts.first?.getFullName(using: formatter) ?? ""
-            
-        
-        let message = (selectedContacts.count > 1 && !firstContactsName.isEmpty) ?
-            String(format: "You have selected %@ and %d other contacts.", firstContactsName, selectedContacts.count.advanced(by: -1)) :
-            String(format: "You have selected %@.", firstContactsName)
-
-        
-        
-        let alert = UIAlertController(title: "Dismiss", message: message, preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Pick selected contacts", style: .default) { _ in
-//            self.presentationDelegate?.contactPickerDidFinish()
-            self.completeSelection()
-        })
-        
-        alert.addAction(UIAlertAction(title: "Discard", style: .destructive) { _ in
-            self.presentationDelegate?.contactPickerDidCancel()
-        })
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        // The popover should point at the Cancel button
-        alert.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    fileprivate func getContact(at indexPath: IndexPath) -> CNContact {
-        if isFiltering {
-            return self.filteredContacts[indexPath.row]
-        }
-        else {
-            let sectionContact = self.sortedContacts[self.sections[indexPath.section]]
-            return sectionContact![indexPath.row]
-        }
-    }
-    
     override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contact = self.getContact(at: indexPath)
         self.toggleSelected(contact)
     }
     
+    // MARK: Section Index Title
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return self.sections
     }
@@ -215,8 +172,23 @@ class KNContactsPickerController: UITableViewController {
         return index
     }
     
+    //    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+    //        let shouldEnableMultiSelectionGesture = settings.selectionMode == .multiple
+    //        print("shouldEnableMultiSelectionGesture \(shouldEnableMultiSelectionGesture)")
+    //        return shouldEnableMultiSelectionGesture
+    //    }
+    //
+    //    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+    //        print("multi select at \(indexPath)")
+    //    }
+    //
+    //    override func tableViewDidEndMultipleSelectionInteraction(_ tableView: UITableView) {
+    //
+    //    }
+    
 }
 
+// MARK: SEARCH RESULTS UPDATING
 extension KNContactsPickerController: UISearchResultsUpdating {
     
     func filterContentForSearchText(_ searchText: String) {
@@ -234,7 +206,7 @@ extension KNContactsPickerController: UISearchResultsUpdating {
     }
 }
 
-
+// MARK: PRESENTATION DELEGATE
 extension KNContactsPickerController: UIAdaptivePresentationControllerDelegate {
     
     func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
