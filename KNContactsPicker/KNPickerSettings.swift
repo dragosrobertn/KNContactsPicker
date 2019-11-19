@@ -80,8 +80,5 @@ public struct KNPickerSettings {
     // Enum value for the subtitle information to be displayed
     public var subtitleDisplayInfo: KNContactSubtitleInfo = .none
     
-    
-    
     public init() {}
-    
 }

@@ -22,9 +22,9 @@ class KNContactsPickerController: UITableViewController {
     private let CELL_ID = "KNContactCell"
     private let formatter =  CNContactFormatter()
     
+    var searchResultsController: UISearchController?
     var contacts: [CNContact] = []
     var filteredContacts: [CNContact] = []
-    
     var sortedContacts: [String: [CNContact]] = [:]
     var sections: [String] = []
     
@@ -40,8 +40,6 @@ class KNContactsPickerController: UITableViewController {
     var shouldDisableSelection: Bool {
         get { return settings.selectionMode == .singleDeselectOthers && selectedContacts.count == 1 }
     }
-    
-    var searchResultsController: UISearchController?
     
     var isSearchBarEmpty: Bool {
         return searchResultsController?.searchBar.text?.isEmpty ?? true
@@ -59,7 +57,6 @@ class KNContactsPickerController: UITableViewController {
         self.navigationItem.title = settings.pickerTitle
         self.tableView.sectionIndexColor = UIColor.lightGray
         
-        //        self.tableView.allowsMultipleSelectionDuringEditing = true
         self.searchResultsController = KNPickerElements.searchResultsController(settings: settings, controller: self)
         self.navigationItem.searchController = searchResultsController
         self.navigationItem.largeTitleDisplayMode = .always
@@ -109,7 +106,7 @@ class KNContactsPickerController: UITableViewController {
                                                         contactName: firstContactsName,
                                                         settings: settings,
                                                         controller: self)
-        //         The popover should point at the Cancel button
+        
         alert.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         
         self.present(alert, animated: true, completion: nil)
@@ -172,20 +169,6 @@ class KNContactsPickerController: UITableViewController {
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return index
     }
-    
-    //    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-    //        let shouldEnableMultiSelectionGesture = settings.selectionMode == .multiple
-    //        print("shouldEnableMultiSelectionGesture \(shouldEnableMultiSelectionGesture)")
-    //        return shouldEnableMultiSelectionGesture
-    //    }
-    //
-    //    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
-    //        print("multi select at \(indexPath)")
-    //    }
-    //
-    //    override func tableViewDidEndMultipleSelectionInteraction(_ tableView: UITableView) {
-    //
-    //    }
     
 }
 

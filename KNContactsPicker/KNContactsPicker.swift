@@ -84,7 +84,6 @@ extension KNContactsPicker: KNContactsPickerControllerPresentationDelegate {
     }
     
     func contactPickerDidSelect(_ picker: KNContactsPickerController) {
-        print("did select")
         let contacts = picker.getSelectedContacts()
         
         print(contacts.count)

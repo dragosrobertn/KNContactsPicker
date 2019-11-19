@@ -20,27 +20,24 @@ struct KNPickerElements {
         let pickString = count > 0 ?
             String(format: settings.selectedContactsPickButtonTitle, count) :
             settings.defaultPickButtonTitle
-               
-               rightButton.setTitle(pickString, for: .normal)
-               rightButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-               rightButton.addTarget(target, action: action, for: .touchUpInside)
-               
-               if #available(iOS 13.0, *) {
-                   if (count > 0 ) {
-                       let string = count == 0 ? PICK_CONTACT_ICON : PICK_CONTACT_FILLED_ICON
-                       let contactsImage = UIImage(systemName: string)
-                       rightButton.setImage(contactsImage, for: .normal)
-                       rightButton.semanticContentAttribute = .forceRightToLeft
-                   }
-                 
-                   rightButton.tintColor = .systemBlue
-               }
-               else {
-                   rightButton.tintColor = .blue
-               }
-               
-               rightButton.sizeToFit()
-               return UIBarButtonItem(customView: rightButton)
+        
+        rightButton.setTitle(pickString, for: .normal)
+        rightButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        rightButton.addTarget(target, action: action, for: .touchUpInside)
+        
+        if #available(iOS 13.0, *) {
+            if (count > 0 ) {
+                let string = count == 0 ? PICK_CONTACT_ICON : PICK_CONTACT_FILLED_ICON
+                let contactsImage = UIImage(systemName: string)
+                rightButton.setImage(contactsImage, for: .normal)
+                rightButton.semanticContentAttribute = .forceRightToLeft
+            }
+            
+            rightButton.tintColor = .systemBlue
+        }
+        
+        rightButton.sizeToFit()
+        return UIBarButtonItem(customView: rightButton)
     }
     
     static func clearButton(_ count: Int, action: Selector, target: UIViewController,  settings: KNPickerSettings) -> UIBarButtonItem {
@@ -55,36 +52,33 @@ struct KNPickerElements {
             leftButton.setImage(clearImage, for: .normal)
             leftButton.tintColor = .secondaryLabel
         }
-        else {
-            leftButton.tintColor = .lightGray
-        }
+        
         leftButton.isUserInteractionEnabled = count > 0
-
+        
         leftButton.sizeToFit()
         return UIBarButtonItem(customView: leftButton)
     }
     
     static func pullToDismissAlert(count: Int, contactName: String, settings: KNPickerSettings, controller: KNContactsPickerController) -> UIAlertController {
         let message = (count > 1 && !contactName.isEmpty) ?
-                    String(format: settings.pullToDismissMessageMultipleContacts, contactName, count.advanced(by: -1)) :
-                    String(format: settings.pullToDismissMessageSingleContact, contactName)
-
-                let alert = UIAlertController(title: settings.pullToDismissAlertTitle, message: message, preferredStyle: .actionSheet)
-                
-                alert.addAction(UIAlertAction(title: settings.pullToDismissCompleteSelectionButtonTitle,
-                                              style: .default) { _ in
-                    controller.presentationDelegate?.contactPickerDidSelect(controller)
-                    
-                })
-                
-                alert.addAction(UIAlertAction(title: settings.pullToDismissDiscardSelectionButtonTitle,
-                                              style: .destructive) { _ in
-                    controller.presentationDelegate?.contactPickerDidCancel(controller)
-                })
-                
-                alert.addAction(UIAlertAction(title: settings.pullToDismissCancelButtonTitle,
-                                              style: .cancel, handler: nil))
-                
+            String(format: settings.pullToDismissMessageMultipleContacts, contactName, count.advanced(by: -1)) :
+            String(format: settings.pullToDismissMessageSingleContact, contactName)
+        
+        let alert = UIAlertController(title: settings.pullToDismissAlertTitle, message: message, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: settings.pullToDismissCompleteSelectionButtonTitle,
+                                      style: .default) { _ in
+                                        controller.presentationDelegate?.contactPickerDidSelect(controller)
+        })
+        
+        alert.addAction(UIAlertAction(title: settings.pullToDismissDiscardSelectionButtonTitle,
+                                      style: .destructive) { _ in
+                                        controller.presentationDelegate?.contactPickerDidCancel(controller)
+        })
+        
+        alert.addAction(UIAlertAction(title: settings.pullToDismissCancelButtonTitle,
+                                      style: .cancel, handler: nil))
+        
         return alert
     }
     
@@ -92,24 +86,24 @@ struct KNPickerElements {
         
         let searchResultsController = UISearchController(searchResultsController: nil)
         searchResultsController.searchResultsUpdater = controller
-              
-              searchResultsController.hidesNavigationBarDuringPresentation = false
-              searchResultsController.obscuresBackgroundDuringPresentation = false
-              searchResultsController.navigationItem.largeTitleDisplayMode = .always
-              searchResultsController.searchBar.placeholder = settings.searchBarPlaceholder
-              
-            controller.definesPresentationContext = true
-              
-              if #available(iOS 13.0, *) {
-                  
-                  let transparentAppearance = UINavigationBarAppearance().copy()
-                  transparentAppearance.configureWithTransparentBackground()
-                  
-                  searchResultsController.navigationItem.standardAppearance = transparentAppearance
-                  searchResultsController.navigationItem.compactAppearance = transparentAppearance
-                  searchResultsController.navigationItem.scrollEdgeAppearance = transparentAppearance
-              }
-              
+        
+        searchResultsController.hidesNavigationBarDuringPresentation = false
+        searchResultsController.obscuresBackgroundDuringPresentation = false
+        searchResultsController.navigationItem.largeTitleDisplayMode = .always
+        searchResultsController.searchBar.placeholder = settings.searchBarPlaceholder
+        
+        controller.definesPresentationContext = true
+        
+        if #available(iOS 13.0, *) {
+            
+            let transparentAppearance = UINavigationBarAppearance().copy()
+            transparentAppearance.configureWithTransparentBackground()
+            
+            searchResultsController.navigationItem.standardAppearance = transparentAppearance
+            searchResultsController.navigationItem.compactAppearance = transparentAppearance
+            searchResultsController.navigationItem.scrollEdgeAppearance = transparentAppearance
+        }
+        
         return searchResultsController
     }
 }
