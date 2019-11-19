@@ -86,7 +86,6 @@ extension KNContactsPicker: KNContactsPickerControllerPresentationDelegate {
     func contactPickerDidSelect(_ picker: KNContactsPickerController) {
         let contacts = picker.getSelectedContacts()
         
-        print(contacts.count)
         self.dismiss(animated: true, completion: {
             if contacts.count > 1 {
                 self.contactPickingDelegate?.contactPicker(didSelect: contacts)
