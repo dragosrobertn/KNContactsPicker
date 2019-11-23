@@ -2,7 +2,7 @@
 A modern, highly customisable contact picker with multi-selection options that closely resembles the ContactsUI picker view controller.
 
 # Preview
-|![Single Deselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleDeselectMode.gif)|![Singel Reselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleReselectMode.gif)|![Multi Select Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/MultiSelectionMode.gif)|
+|![Single Deselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleDeselectMode.gif)|![Single Reselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleReselectMode.gif)|![Multiple Select Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/MultiSelectionMode.gif)|
 |---|---|---|
 |Single Deselect|Single Reselect|Multi Select|
 
