@@ -28,7 +28,10 @@ KNContactsPicker is a modern, customisable and easy to use Contacts Picker simil
 - Returns CNContact objects
 - Highly customisable settings for strings and options
 - Two conditional methods to enable or deselect certain contacts
-- Support iOS 13 Dark Mode and Icons (SF Symbols)
+- Support iOS 13 
+  - Dark Mode
+  - Icons (SF Symbols)
+  - Pull to Dismiss
 
 Coming soon:
 - Extra contact info under
@@ -61,18 +64,20 @@ extension ViewController: KNContactPickingDelegate {
 }
 ```
 
-Customise the settings, Initialise and Present the KNContactsPicker
+Customise the Settings
 ```swift
 var settings = KNPickerSettings()
 settings.pickerTitle = "Pick"
 
 settings.conditionToEnableContact = { contact in
-  return true
+  return contact.organizationName == "Apple"
 }
 settings.conditionToDisableContact = { contact in
     return self.contacts.contains(contact)
 }
-
+```
+Initialise and Present the KNContactsPicker
+```swift
 let controller = KNContactsPicker(delegate: self, settings: settings)
         
 self.navigationController?.present(controller, animated: true, completion: nil)
