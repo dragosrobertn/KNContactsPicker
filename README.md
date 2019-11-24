@@ -1,5 +1,5 @@
 # KNContactsPicker
-A modern, highly customisable contact picker with multi-selection options that closely resembles the ContactsUI picker view controller.
+A modern, highly customisable contact picker with multi-selection options that closely resembles the behaviour of the ContactsUI's CNContactPickerViewController.
 
 # Preview
 |![Single Deselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleDeselectMode.gif)|![Single Reselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleReselectMode.gif)|![Multiple Select Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/MultiSelectionMode.gif)|
@@ -18,7 +18,7 @@ Download and include the `KNContactsPicker` folder and files in your codebase.
  - Swift 5
  
 # Features
-KNContactsPicker is a modern, customisable and easy to use Contacts Picker similar to the stock ContactPickerViewController. It improves in a couple of area. 
+KNContactsPicker is a modern, customisable and easy to use Contacts Picker similar to the stock CNContactPickerViewController. It does improve in a couple of area for a better UX.
 
 - Three contact selection modes:
   - Single Deselect (Deselects all other contacts after first contact is selected)
@@ -87,4 +87,4 @@ self.navigationController?.present(controller, animated: true, completion: nil)
 ```
 
 ## Recommended
-You can use KNContactsPicker with KNContacts framework.
+You can use KNContactsPicker with [KNContacts](https://github.com/dragosrobertn/KNContacts) framework.
