@@ -15,10 +15,10 @@
 		15626DDC237CAC6A00286573 /* KNPickerElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15626DDB237CAC6A00286573 /* KNPickerElements.swift */; };
 		15A3811F2365BB860039DC59 /* UIImage+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3811E2365BB860039DC59 /* UIImage+Initials.swift */; };
 		15A381282366E9850039DC59 /* KNContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A381262366E9850039DC59 /* KNContactCell.swift */; };
+		15A75558238B4933004EC72B /* KNContactsPicker.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 15A75557238B4933004EC72B /* KNContactsPicker.podspec */; };
 		15D710A22361F2E300EB9F6D /* KNContactsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */; };
 		15FC45BA235F7F0100AF13C4 /* KNContactsPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FC45B0235F7F0100AF13C4 /* KNContactsPicker.framework */; };
 		15FC45BF235F7F0100AF13C4 /* KNContactsPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45BE235F7F0100AF13C4 /* KNContactsPickerTests.swift */; };
-		15FC45C1235F7F0100AF13C4 /* KNContactsPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 15FC45B3235F7F0100AF13C4 /* KNContactsPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15FC45CB235F7FB500AF13C4 /* KNContactsPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45CA235F7FB500AF13C4 /* KNContactsPickerController.swift */; };
 		15FC45CE235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */; };
 		15FC45CF235F897300AF13C4 /* KNContactsAuthorisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */; };
@@ -46,9 +46,9 @@
 		15626DDB237CAC6A00286573 /* KNPickerElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNPickerElements.swift; sourceTree = "<group>"; };
 		15A3811E2365BB860039DC59 /* UIImage+Initials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Initials.swift"; sourceTree = "<group>"; };
 		15A381262366E9850039DC59 /* KNContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNContactCell.swift; sourceTree = "<group>"; };
+		15A75557238B4933004EC72B /* KNContactsPicker.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KNContactsPicker.podspec; sourceTree = "<group>"; };
 		15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactsPicker.swift; sourceTree = "<group>"; };
 		15FC45B0235F7F0100AF13C4 /* KNContactsPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KNContactsPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		15FC45B3235F7F0100AF13C4 /* KNContactsPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNContactsPicker.h; sourceTree = "<group>"; };
 		15FC45B4235F7F0100AF13C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15FC45B9235F7F0100AF13C4 /* KNContactsPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KNContactsPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FC45BE235F7F0100AF13C4 /* KNContactsPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNContactsPickerTests.swift; sourceTree = "<group>"; };
@@ -95,6 +95,7 @@
 		15FC45A6235F7F0100AF13C4 = {
 			isa = PBXGroup;
 			children = (
+				15A75557238B4933004EC72B /* KNContactsPicker.podspec */,
 				15FC45B2235F7F0100AF13C4 /* KNContactsPicker */,
 				15FC45BD235F7F0100AF13C4 /* KNContactsPickerTests */,
 				15FC45B1235F7F0100AF13C4 /* Products */,
@@ -119,7 +120,6 @@
 				154D96702368DF03004C1DAC /* KNPickerSettings.swift */,
 				15D710A12361F2E300EB9F6D /* KNContactsPicker.swift */,
 				15FC45D0235FA93800AF13C4 /* KNContactsUtils.swift */,
-				15FC45B3235F7F0100AF13C4 /* KNContactsPicker.h */,
 				15FC45B4235F7F0100AF13C4 /* Info.plist */,
 				15FC45CD235F897300AF13C4 /* KNContactsAuthorisation.swift */,
 				15A381262366E9850039DC59 /* KNContactCell.swift */,
@@ -144,7 +144,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15FC45C1235F7F0100AF13C4 /* KNContactsPicker.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15A75558238B4933004EC72B /* KNContactsPicker.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
