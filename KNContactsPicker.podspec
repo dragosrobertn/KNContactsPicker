@@ -9,8 +9,6 @@ Pod::Spec.new do |spec|
                    DESC
 
   spec.homepage     = "https://github.com/dragosrobertn/KNContactsPicker"
-  spec.screenshots  = "https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleDeselectMode.gif", "https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleReselectMode.gif", "https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/MultiSelectionMode.gif"
-
 
   spec.license      = { :type => "MIT", :file => "LICENSE" }
 
