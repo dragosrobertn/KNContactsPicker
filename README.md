@@ -37,9 +37,10 @@ KNContactsPicker is a modern, customisable and easy to use Contacts Picker simil
   - Pull to Dismiss
 
 Coming soon:
-- Extra contact info under
+- Extra contact info under name
 - Contact sort order
 - Contact display order
+- More modular contact property approach
 
 Make sure your app (the host app) has provided a `Privacy - Contacts Usage Description` in your `Info.plist`. 
 It's also recommended that you check that contact authorisation is granted. 
@@ -72,7 +73,7 @@ Customise the Settings
 var settings = KNPickerSettings()
 settings.pickerTitle = "Pick"
 
-settings.conditionToEnableContact = { contact in
+settings.conditionToDisplayContact = { contact in
   return contact.organizationName == "Apple"
 }
 settings.conditionToDisableContact = { contact in
