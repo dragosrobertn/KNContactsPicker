@@ -31,7 +31,7 @@ public enum KNContactFetchingError: Error {
 class KNContactsAuthorisation {
     static let contactStore = CNContactStore()
     
-    static func requestAccess(conditionToEnableContact: @escaping KNContactEnablingPredicate) -> Result<[CNContact], KNContactFetchingError> {
+    static func requestAccess(conditionToEnableContact: @escaping KNFilteringPredicate) -> Result<[CNContact], KNContactFetchingError> {
        
         
         var result: Result<[CNContact], KNContactFetchingError> = Result.failure(.pendingAuthorisation)

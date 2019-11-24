@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBAction func pickContactsButton(_ sender: Any) {
         settings.pickerTitle = "Pick"
         
-        settings.conditionToEnableContact = { contact in
+        settings.conditionToDisplayContact = { contact in
           return true
         }
         settings.conditionToDisableContact = { contact in
@@ -54,7 +54,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         self.selectionPickerModeChanged(self)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-
         self.contactsTableView.delegate = self
         self.contactsTableView.dataSource = self
     }
