@@ -11,6 +11,15 @@ A modern, highly customisable contact picker with multi-selection options that c
 # Installation
 
 ## CocoaPods
+Add this to your podfile for the latest version
+```
+pod 'KNContactsPicker'
+```
+Or specify desired version
+```
+pod 'KNContactsPicker', '~> 0.1'
+```
+
 
 ## Manual Installation
 Download and include the `KNContactsPicker` folder and files in your codebase.
