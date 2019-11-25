@@ -1,4 +1,6 @@
 # KNContactsPicker
+![CocoaPods](https://img.shields.io/cocoapods/v/KNContactsPicker) ![contributions](https://img.shields.io/badge/contributions-welcome-informational.svg)
+
 A modern, highly customisable contact picker with multi-selection options that closely resembles the behaviour of the ContactsUI's CNContactPickerViewController.
 
 # Preview
