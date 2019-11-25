@@ -32,7 +32,8 @@ class KNContactCell: UITableViewCell {
                            width: 40,
                            height: img.frame.size.height )
         img.contentMode = .scaleAspectFill
-         // enable autolayout
+        
+        // enable autolayout
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 20
         img.clipsToBounds = true

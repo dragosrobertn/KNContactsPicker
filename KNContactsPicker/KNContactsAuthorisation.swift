@@ -58,7 +58,6 @@ class KNContactsAuthorisation {
             
             do {
                 try self.contactStore.enumerateContacts(with: fetchRequestKeys, usingBlock: { (contact, stop) -> Void in
-//                    allContacts.append(contact)
                     if conditionToEnableContact(contact) {
                         allContacts.append(contact)
                     }

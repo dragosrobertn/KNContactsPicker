@@ -138,7 +138,7 @@ class KNContactsPickerController: UITableViewController {
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! KNContactCell
         let contact = self.getContact(at: indexPath)
-        let image = contact.getImageOrInitials(bounds: cell.profileImageView.bounds, scaled: cell.imageView?.shouldScale ?? true)
+        let image = contact.getImageOrInitials(bounds: cell.profileImageView.bounds, scaled: cell.imageView?.shouldScale ?? true, gradient: settings.contactImageBackgroundColor)
         let disabled = ( shouldDisableSelection && !selectedContacts.contains(contact) ) || settings.conditionToDisableContact(contact)
         
         let selected = selectedContacts.contains(contact)

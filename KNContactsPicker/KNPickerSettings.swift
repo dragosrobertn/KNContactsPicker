@@ -80,5 +80,9 @@ public struct KNPickerSettings {
     // Enum value for the subtitle information to be displayed
     public var subtitleDisplayInfo: KNContactSubtitleInfo = .none
     
+    // The colour or gradient colours to display as background
+    // if contact doesn't have a thumbnail image set.
+    public var contactImageBackgroundColor: GradientColors = GradientColors(top: #colorLiteral(red: 0.2199510634, green: 0.2199510634, blue: 0.2199510634, alpha: 1), bottom: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+    
     public init() {}
 }
