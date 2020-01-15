@@ -9,9 +9,9 @@
 import UIKit
 
 class KNContactCell: UITableViewCell {
-    var disabled: Bool = false
+    private var disabled: Bool = false
     
-    var initialColor: UIColor {
+    private var initialColor: UIColor {
          get {
              if #available(iOS 13.0, *) {
                 return self.traitCollection.userInterfaceStyle == .dark ?
@@ -22,7 +22,7 @@ class KNContactCell: UITableViewCell {
          }
      }
     
-    let profileImageView: UIImageView = {
+    private let profileImageView: UIImageView = {
         let img = UIImageView()
         let bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
 
@@ -37,37 +37,64 @@ class KNContactCell: UITableViewCell {
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 20
         img.clipsToBounds = true
-       return img
+        return img
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor.black
         if #available(iOS 13.0, *) {
             label.textColor = UIColor.label
-        } else {
-            label.textColor = UIColor.black
         }
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 11)
+        label.textColor = UIColor.lightText
+        if #available(iOS 13.0, *) {
+            label.textColor = UIColor.secondaryLabel
+        }
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let containerView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.alignment = .fill
+        view.distribution = .fillProportionally
+        view.spacing = 0
+        
+        return view
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(profileImageView)
-        self.contentView.addSubview(nameLabel)
+        self.containerView.addArrangedSubview(nameLabel)
+       
+        self.contentView.addSubview(containerView)
         
-        profileImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-        profileImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant:10).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant:40).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant:40).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo:self.profileImageView.trailingAnchor, constant:10).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:-10).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant:40).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        profileImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        containerView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: self.profileImageView.trailingAnchor, constant: 10).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
+        
         nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.minimumScaleFactor = CGFloat(0.8)
+        nameLabel.minimumScaleFactor = CGFloat(0.7)
         nameLabel.font = UIFont.boldSystemFont(ofSize: nameLabel.font.pointSize)
+        nameLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor).isActive = true
+        
         
         self.selectionStyle = .none
      }
@@ -102,6 +129,7 @@ class KNContactCell: UITableViewCell {
         self.backgroundColor = UIColor.systemBlue
 
         self.nameLabel.textColor = UIColor.white
+        self.subtitleLabel.textColor = UIColor.lightText
     }
     
     func setCellToUnselectedStyle() {
@@ -109,31 +137,32 @@ class KNContactCell: UITableViewCell {
         self.accessoryView?.backgroundColor = UIColor.clear
         self.accessoryType = UITableViewCell.AccessoryType.none
         self.contentView.backgroundColor = initialColor
+         
+        self.nameLabel.textColor = UIColor.black
+        self.subtitleLabel.textColor = UIColor.lightText
         if #available(iOS 13.0, *) {
            self.nameLabel.textColor = UIColor.label
-        } else {
-           self.nameLabel.textColor = UIColor.black
+           self.subtitleLabel.textColor = UIColor.secondaryLabel
         }
+        
     }
     
     func setDisabled(disabled: Bool) {
         self.disabled = disabled
         
+        self.isUserInteractionEnabled = !self.disabled
+        
         if (self.disabled) {
+            self.nameLabel.textColor = UIColor.lightGray
             if #available(iOS 13.0, *) {
                 self.nameLabel.textColor = UIColor.secondaryLabel
-            } else {
-                self.nameLabel.textColor = UIColor.lightGray
             }
-            self.isUserInteractionEnabled = false
         }
         else {
+            self.nameLabel.textColor = UIColor.black
             if #available(iOS 13.0, *) {
                 self.nameLabel.textColor = UIColor.label
-            } else {
-                self.nameLabel.textColor = UIColor.black
             }
-            self.isUserInteractionEnabled = true
         }
     }
     
@@ -142,6 +171,22 @@ class KNContactCell: UITableViewCell {
         
         if traitCollection.userInterfaceStyle != previous.userInterfaceStyle {
             self.setAppropriateStyle()
+        }
+    }
+    
+    public func set(contactModel: KNContactCellModel) {
+        self.nameLabel.text = contactModel.getName()
+        self.subtitleLabel.text = contactModel.getSubtitle()
+        
+        let image = contactModel.getImage(with: self.profileImageView.bounds, scaled: self.profileImageView.shouldScale)
+        self.profileImageView.image = image
+        self.profileImageView.highlightedImage = image
+        
+        if !self.subtitleLabel.text!.isEmpty {
+            self.containerView.addArrangedSubview(subtitleLabel)
+            subtitleLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: 0).isActive = true
+            subtitleLabel.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor).isActive = true
+            subtitleLabel.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor).isActive = true
         }
     }
 }

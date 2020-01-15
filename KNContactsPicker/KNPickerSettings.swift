@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Contacts
 import UIKit
 
 public enum KNContactsPickerMode {
@@ -19,7 +20,18 @@ public enum KNContactSubtitleInfo {
     case none
     case phoneNumber
     case emailAddress
-    case company
+    case organizationName
+}
+
+public enum KNContactsSource {
+    case `default`
+    case userProvided
+}
+
+public enum KNContactCellImageOptions {
+    case contactImage
+    case initials
+    case userProvidedImage
 }
 
 public struct KNPickerSettings {
@@ -27,11 +39,25 @@ public struct KNPickerSettings {
     // MARK: PICKER TOP SETTINGS
     public var pickerTitle: String = "Contacts"
     
+    // The source for contacts - `default` uses all contacts on device.
+    // If setting to `userProvided` then make sure to set pickerContactsList with
+    // the list of contacts to display
+    public var pickerContactsSource: KNContactsSource = .default
+    public var pickerContactsList: [CNContact] = []
+    
+    // The 
+    public var displayContactsSortedBy: KNContactSortingOption = .familyName
+    
+    // Condition for presenting the contact in the list.
+    // If the condition matches, the contact will be shown. Otherwise it won't.
     public var conditionToDisplayContact: KNFilteringPredicate = { _ in true }
+    
+    // Condition for displaying the contact cell disabled.
+    // If the condition matches, the cell will be shown in a disabled state.
+    // Otherwise it will be active and selectable.
     public var conditionToDisableContact: KNFilteringPredicate = { _ in false }
     
-    // Enum value whether the contact picker should allow selecting multiple
-    // or a single contact
+    // Enum value whether the contact picker should allow a single or multiple contacts
     public var selectionMode: KNContactsPickerMode = .singleDeselectOthers
     
     // Boolean whether picker should immediately return the first contact picked
@@ -79,10 +105,12 @@ public struct KNPickerSettings {
     // MARK: CONTACT DISPLAY
     // Enum value for the subtitle information to be displayed
     public var subtitleDisplayInfo: KNContactSubtitleInfo = .none
+    public var contactCellImageOptionOrder: [KNContactCellImageOptions] = [.contactImage, .userProvidedImage, .initials]
+    public var contactCellUserProvidedImage: UIImage?
     
     // The colour or gradient colours to display as background
     // if contact doesn't have a thumbnail image set.
-    public var contactImageBackgroundColor: GradientColors = GradientColors(top: #colorLiteral(red: 0.2199510634, green: 0.2199510634, blue: 0.2199510634, alpha: 1), bottom: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+    public var contactInitialsBackgroundColor: GradientColors = GradientColors(top: #colorLiteral(red: 0.2199510634, green: 0.2199510634, blue: 0.2199510634, alpha: 1), bottom: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
     
     public init() {}
 }

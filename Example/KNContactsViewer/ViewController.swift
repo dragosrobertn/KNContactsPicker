@@ -16,46 +16,49 @@ class ViewController: UIViewController, UITableViewDelegate {
     var contacts: [CNContact] = []
     
     @IBAction func pickContactsButton(_ sender: Any) {
-        settings.pickerTitle = "Pick"
-        
-        settings.conditionToDisplayContact = { contact in
-          return true
+        settings.conditionToDisplayContact = { _ in
+            return true
         }
-        settings.conditionToDisableContact = { contact in
-            return self.contacts.contains(contact)
+        settings.conditionToDisableContact = { [weak self] contact in
+            return self?.contacts.contains(contact) ?? false
         }
-              
+
         let controller = KNContactsPicker(delegate: self, settings: settings)
         
         self.navigationController?.present(controller, animated: true, completion: nil)
           
     }
+    @IBAction func clearContacts(_ sender: Any) {
+        self.contacts = []
+        self.contactsTableView.reloadData()
+    }
     
-    @IBOutlet weak var selectionPickerControl: UISegmentedControl!
+    @IBAction func showSettingsButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "showSettings", sender: self)
+    }
+    
     @IBOutlet weak var contactsTableView: UITableView!
     
-    @IBAction func selectionPickerModeChanged(_ sender: Any) {
-        switch selectionPickerControl.selectedSegmentIndex
-        {
-        case 0:
-            settings.selectionMode = .singleReselect
-        case 1:
-            settings.selectionMode = .singleDeselectOthers
-        case 2:
-            settings.selectionMode = .multiple
-        default:
-            break
-        }
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Contacts Picker"
-        self.selectionPickerControl.selectedSegmentIndex = 2
-        self.selectionPickerModeChanged(self)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         self.contactsTableView.delegate = self
         self.contactsTableView.dataSource = self
+        
+        settings.pickerTitle = "Pick"
+        settings.contactCellUserProvidedImage = UIImage(named: "contact-cell-image.pdf")
+        settings.contactInitialsBackgroundColor = GradientColors(top: #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1), bottom: #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1))
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSettings" {
+           guard let newVC = segue.destination as? SettingsViewController else { return }
+           newVC.settingsDelegate = self
+           newVC.settings = self.settings
+       }
     }
     
 }
@@ -88,5 +91,11 @@ extension ViewController: KNContactPickingDelegate {
     func contactPicker(didSelect contacts: [CNContact]) {
         self.contacts.append(contentsOf: contacts)
         self.contactsTableView.reloadData()
+    }
+}
+
+extension ViewController: SettingsViewControllerDelegate {
+    func dismissed(with settings: KNPickerSettings) {
+        self.settings = settings
     }
 }

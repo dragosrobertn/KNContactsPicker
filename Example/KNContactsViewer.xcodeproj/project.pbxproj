@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		152967F82384AD5500EE0883 /* KNContactsPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152967F52384AD4600EE0883 /* KNContactsPicker.framework */; };
 		152967F92384AD5500EE0883 /* KNContactsPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 152967F52384AD4600EE0883 /* KNContactsPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		159CF9B623CE701500FD8005 /* CellImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CF9B523CE701500FD8005 /* CellImageTableViewController.swift */; };
+		15ABAF3723BA9C1700D5041E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABAF3623BA9C1700D5041E /* SettingsViewController.swift */; };
 		15FC45E6235FB59200AF13C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45E5235FB59200AF13C4 /* AppDelegate.swift */; };
 		15FC45E8235FB59200AF13C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45E7235FB59200AF13C4 /* SceneDelegate.swift */; };
 		15FC45EA235FB59200AF13C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45E9235FB59200AF13C4 /* ViewController.swift */; };
@@ -65,6 +67,8 @@
 /* Begin PBXFileReference section */
 		152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KNContactsPicker.xcodeproj; path = ../KNContactsPicker.xcodeproj; sourceTree = "<group>"; };
 		152967EF2384AD4600EE0883 /* KNContactsPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KNContactsPicker.xcodeproj; path = ../KNContactsPicker.xcodeproj; sourceTree = "<group>"; };
+		159CF9B523CE701500FD8005 /* CellImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellImageTableViewController.swift; sourceTree = "<group>"; };
+		15ABAF3623BA9C1700D5041E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15FC45E2235FB59200AF13C4 /* KNContactsViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KNContactsViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FC45E5235FB59200AF13C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15FC45E7235FB59200AF13C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				15FC45EE235FB59400AF13C4 /* Assets.xcassets */,
 				15FC45F0235FB59400AF13C4 /* LaunchScreen.storyboard */,
 				15FC45F3235FB59400AF13C4 /* Info.plist */,
+				15ABAF3623BA9C1700D5041E /* SettingsViewController.swift */,
+				159CF9B523CE701500FD8005 /* CellImageTableViewController.swift */,
 			);
 			path = KNContactsViewer;
 			sourceTree = "<group>";
@@ -262,6 +268,8 @@
 				15FC45EA235FB59200AF13C4 /* ViewController.swift in Sources */,
 				15FC45E6235FB59200AF13C4 /* AppDelegate.swift in Sources */,
 				15FC45E8235FB59200AF13C4 /* SceneDelegate.swift in Sources */,
+				15ABAF3723BA9C1700D5041E /* SettingsViewController.swift in Sources */,
+				159CF9B623CE701500FD8005 /* CellImageTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +345,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -391,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -408,7 +416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8UXEK92PP3;
 				INFOPLIST_FILE = KNContactsViewer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -427,7 +435,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8UXEK92PP3;
 				INFOPLIST_FILE = KNContactsViewer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -12,7 +12,17 @@ import Contacts
 open class KNContactsPicker: UINavigationController {
     
     var settings: KNPickerSettings = KNPickerSettings()
-    var contactPickingDelegate: KNContactPickingDelegate?
+    weak var contactPickingDelegate: KNContactPickingDelegate!
+    private var contacts: [CNContact] = []
+    
+    var tableViewStyle: UITableView.Style {
+        get {
+            if #available(iOS 13.0, *) {
+                return UITableView.Style.insetGrouped
+            }
+            return UITableView.Style.grouped
+        }
+    }
     
     private var sortingOutcome: KNSortingOutcome?
     
@@ -36,17 +46,7 @@ open class KNContactsPicker: UINavigationController {
     }
     
     func getContactsPicker() -> KNContactsPickerController {
-        var style: UITableView.Style {
-            get {
-                if #available(iOS 13.0, *) {
-                    return UITableView.Style.insetGrouped
-                } else {
-                    return UITableView.Style.grouped
-                }
-            }
-        }
-        
-        let controller = KNContactsPickerController(style: style)
+        let controller = KNContactsPickerController(style: tableViewStyle)
         
         controller.settings = settings
         controller.delegate = contactPickingDelegate
@@ -59,10 +59,20 @@ open class KNContactsPicker: UINavigationController {
     }
     
     func fetchContacts() {
+      
+        switch settings.pickerContactsSource {
+        case .userProvided:
+            self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: settings.pickerContactsList, sortingType: settings.displayContactsSortedBy)
+        case .default:
+            requestAndSortContacts()
+        }
         
+    }
+    
+    private func requestAndSortContacts() {
         switch KNContactsAuthorisation.requestAccess(conditionToEnableContact: settings.conditionToDisplayContact) {
         case .success(let resultContacts):
-            self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: resultContacts, sortingType: .familyName)
+            self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: resultContacts, sortingType: settings.displayContactsSortedBy)
             
         case .failure(let failureReason):
             if failureReason != .pendingAuthorisation {
@@ -71,35 +81,6 @@ open class KNContactsPicker: UINavigationController {
                 })
             }
         }
-    }
-    
-}
-
-extension KNContactsPicker: KNContactsPickerControllerPresentationDelegate {
-    
-    func contactPickerDidCancel(_ picker: KNContactsPickerController) {
-        self.dismiss(animated: true, completion: {
-            self.contactPickingDelegate?.contactPicker(didFailPicking: KNContactFetchingError.userCancelled)
-        })
-    }
-    
-    func contactPickerDidSelect(_ picker: KNContactsPickerController) {
-        let contacts = picker.getSelectedContacts()
-        
-        self.dismiss(animated: true, completion: {
-            if contacts.count > 1 {
-                self.contactPickingDelegate?.contactPicker(didSelect: contacts)
-            }
-            else {
-                guard let onlyContact = contacts.first else {
-                    let error: Error = KNContactFetchingError.fetchRequestFailed
-                    return (self.contactPickingDelegate?.contactPicker(didFailPicking: error))!
-                }
-                
-                self.contactPickingDelegate?.contactPicker(didSelect: onlyContact)
-            }
-            
-        })
     }
     
 }

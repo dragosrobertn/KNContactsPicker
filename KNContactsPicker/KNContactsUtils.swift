@@ -27,7 +27,10 @@ struct KNContactUtils {
             CNContactGivenNameKey,
             CNContactImageDataAvailableKey,
             CNContactImageDataKey,
-            CNContactThumbnailImageDataKey
+            CNContactThumbnailImageDataKey,
+            CNContactEmailAddressesKey,
+            CNContactPhoneNumbersKey,
+            CNContactOrganizationNameKey
             ] as [CNKeyDescriptor]
         array.append(CNContactFormatter.descriptorForRequiredKeys(for: .fullName))
         return array
@@ -69,6 +72,20 @@ struct KNContactUtils {
         ]
     }
     
+    static func sortByGivenName(c1: CNContact, c2:CNContact) -> Bool {
+        if c1.givenName == c2.givenName {
+            return c1.familyName < c2.familyName
+        }
+        return c1.givenName < c2.givenName
+    }
+    
+    static func sortByFamilyName(c1: CNContact, c2:CNContact) -> Bool {
+        if c1.familyName == c2.familyName {
+            return c1.givenName < c2.givenName
+        }
+        return c1.familyName < c2.familyName
+    }
+    
     static func sortContactsIntoSections(contacts: [CNContact], sortingType: KNContactSortingOption) -> (sections: [String], sortedContacts: [CNContact], contactsSortedInSections: [String: [CNContact]]) {
         
         var sections: [String] = []
@@ -79,7 +96,7 @@ struct KNContactUtils {
         
         switch sortingType {
         case .givenName:
-            sortedContacts = contacts.sorted(by: { ( $0.givenName < $1.givenName ) })
+            sortedContacts = contacts.sorted(by: { sortByGivenName(c1: $0, c2: $1) })
             for contact in contacts {
                 sortedContactsInSection = self.addToSortedContacts(sortedContactsInSection, contact: contact, groupBy: {
                     if (decideOnLetter(for: contact.givenName) == ALL_OTHERS_VALUE) {
@@ -89,7 +106,7 @@ struct KNContactUtils {
                 })
             }
         case .familyName:
-            sortedContacts = contacts.sorted(by: { ( $0.familyName < $1.familyName ) })
+            sortedContacts = contacts.sorted(by: { sortByFamilyName(c1: $0, c2: $1) })
             for contact in contacts {
                 sortedContactsInSection = self.addToSortedContacts(sortedContactsInSection, contact: contact, groupBy: {
                     if (decideOnLetter(for: contact.familyName) == ALL_OTHERS_VALUE) {
@@ -143,7 +160,7 @@ struct KNContactUtils {
 }
 
 
-enum KNContactSortingOption {
+public enum KNContactSortingOption {
     case familyName
     case givenName
 }

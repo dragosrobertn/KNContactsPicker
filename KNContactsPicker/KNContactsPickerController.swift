@@ -16,7 +16,7 @@ protocol KNContactsPickerControllerPresentationDelegate {
 
 class KNContactsPickerController: UITableViewController {
     public var settings: KNPickerSettings = KNPickerSettings()
-    public var delegate: KNContactPickingDelegate?
+    public weak var delegate: KNContactPickingDelegate?
     public var presentationDelegate: KNContactsPickerControllerPresentationDelegate?
     
     private let CELL_ID = "KNContactCell"
@@ -138,14 +138,18 @@ class KNContactsPickerController: UITableViewController {
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! KNContactCell
         let contact = self.getContact(at: indexPath)
-        let image = contact.getImageOrInitials(bounds: cell.profileImageView.bounds, scaled: cell.imageView?.shouldScale ?? true, gradient: settings.contactImageBackgroundColor)
+        let contactModel = KNContactCellModel(contact: contact, settings: settings, formatter: formatter)
+//        let image = contactModel.getImage(with: cell.profileImageView.bounds, scaled: cell.profileImageView.shouldScale)
+        
         let disabled = ( shouldDisableSelection && !selectedContacts.contains(contact) ) || settings.conditionToDisableContact(contact)
         
         let selected = selectedContacts.contains(contact)
         
-        cell.nameLabel.text = contact.getFullName(using: formatter)
-        cell.profileImageView.image = image
-        cell.profileImageView.highlightedImage = image
+//        cell.nameLabel.text = contact.getFullName(using: formatter)
+//        cell.subtitleLabel.text = contactModel.getSubtitle()
+        cell.set(contactModel: contactModel)
+//        cell.profileImageView.image = image
+//        cell.profileImageView.highlightedImage = image
         
         cell.setDisabled(disabled: disabled)
         cell.setSelected(selected, animated: false)
