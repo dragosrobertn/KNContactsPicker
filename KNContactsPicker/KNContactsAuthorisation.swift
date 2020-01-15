@@ -42,14 +42,10 @@ class KNContactsAuthorisation {
             return Result.failure(.insufficientAccess)
             
         case CNAuthorizationStatus.notDetermined:
-            
             contactStore.requestAccess(for: .contacts, completionHandler: { (granted, error) -> Void in
-                result = granted ? self.requestAccess(conditionToEnableContact: conditionToEnableContact) : Result.failure(.accessNotGranted)
+                result = granted ? KNContactsAuthorisation.requestAccess(conditionToEnableContact: conditionToEnableContact) : Result.failure(.accessNotGranted)
             })
-            
             return result
-            
-            
             
         case  CNAuthorizationStatus.authorized:
 

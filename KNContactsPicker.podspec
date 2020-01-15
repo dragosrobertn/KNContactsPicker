@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "KNContactsPicker"
-  spec.version      = "0.2.0"
+  spec.version      = "0.2.1"
   spec.summary      = "KNContactsPicker is a modern, highly customisable contacts picker with search and multi-selection options."
 
   spec.description  = <<-DESC

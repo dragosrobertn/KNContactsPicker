@@ -9,7 +9,7 @@
 import UIKit
 import Contacts
 
-protocol KNContactsPickerControllerPresentationDelegate {
+protocol KNContactsPickerControllerPresentationDelegate: class {
     func contactPickerDidCancel(_ picker: KNContactsPickerController)
     func contactPickerDidSelect(_ picker: KNContactsPickerController)
 }
@@ -17,7 +17,7 @@ protocol KNContactsPickerControllerPresentationDelegate {
 class KNContactsPickerController: UITableViewController {
     public var settings: KNPickerSettings = KNPickerSettings()
     public weak var delegate: KNContactPickingDelegate?
-    public var presentationDelegate: KNContactsPickerControllerPresentationDelegate?
+    public weak var presentationDelegate: KNContactsPickerControllerPresentationDelegate?
     
     private let CELL_ID = "KNContactCell"
     private let formatter =  CNContactFormatter()
@@ -139,17 +139,11 @@ class KNContactsPickerController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! KNContactCell
         let contact = self.getContact(at: indexPath)
         let contactModel = KNContactCellModel(contact: contact, settings: settings, formatter: formatter)
-//        let image = contactModel.getImage(with: cell.profileImageView.bounds, scaled: cell.profileImageView.shouldScale)
         
         let disabled = ( shouldDisableSelection && !selectedContacts.contains(contact) ) || settings.conditionToDisableContact(contact)
         
         let selected = selectedContacts.contains(contact)
-        
-//        cell.nameLabel.text = contact.getFullName(using: formatter)
-//        cell.subtitleLabel.text = contactModel.getSubtitle()
         cell.set(contactModel: contactModel)
-//        cell.profileImageView.image = image
-//        cell.profileImageView.highlightedImage = image
         
         cell.setDisabled(disabled: disabled)
         cell.setSelected(selected, animated: false)
