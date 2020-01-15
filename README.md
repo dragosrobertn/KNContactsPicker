@@ -1,5 +1,5 @@
 # KNContactsPicker
-![CocoaPods](https://img.shields.io/cocoapods/v/KNContactsPicker) ![contributions](https://img.shields.io/badge/contributions-welcome-informational.svg)
+![CocoaPods](https://img.shields.io/cocoapods/v/KNContactsPicker) [![codebeat badge](https://codebeat.co/badges/aaf07a97-7f1b-4c91-9966-2dcbbfb34ae5)](https://codebeat.co/projects/github-com-dragosrobertn-kncontactspicker-master) ![contributions](https://img.shields.io/badge/contributions-welcome-informational.svg)
 
 A modern, highly customisable contact picker with multi-selection options that closely resembles the behaviour of the ContactsUI's CNContactPickerViewController.
 
