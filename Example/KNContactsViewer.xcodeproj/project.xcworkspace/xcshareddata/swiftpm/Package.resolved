@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KNContactsPicker",
+        "repositoryURL": "https://github.com/neone/KNContactsPicker.git",
+        "state": {
+          "branch": "master",
+          "revision": "4735b143031f3f91116195b14d66103bd4a4e40d",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

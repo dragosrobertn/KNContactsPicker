@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		152967F82384AD5500EE0883 /* KNContactsPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152967F52384AD4600EE0883 /* KNContactsPicker.framework */; };
-		152967F92384AD5500EE0883 /* KNContactsPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 152967F52384AD4600EE0883 /* KNContactsPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		159CF9B623CE701500FD8005 /* CellImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159CF9B523CE701500FD8005 /* CellImageTableViewController.swift */; };
 		15ABAF3723BA9C1700D5041E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABAF3623BA9C1700D5041E /* SettingsViewController.swift */; };
 		15FC45E6235FB59200AF13C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC45E5235FB59200AF13C4 /* AppDelegate.swift */; };
@@ -17,38 +15,8 @@
 		15FC45ED235FB59200AF13C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45EB235FB59200AF13C4 /* Main.storyboard */; };
 		15FC45EF235FB59400AF13C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45EE235FB59400AF13C4 /* Assets.xcassets */; };
 		15FC45F2235FB59400AF13C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45F0235FB59400AF13C4 /* LaunchScreen.storyboard */; };
+		D9344D83241159040026C9FE /* KNContactsPicker in Frameworks */ = {isa = PBXBuildFile; productRef = D9344D82241159040026C9FE /* KNContactsPicker */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		152967EB2384AD1B00EE0883 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15FC45B0235F7F0100AF13C4;
-			remoteInfo = KNContactsPicker;
-		};
-		152967ED2384AD1B00EE0883 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15FC45B9235F7F0100AF13C4;
-			remoteInfo = KNContactsPickerTests;
-		};
-		152967F42384AD4600EE0883 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152967EF2384AD4600EE0883 /* KNContactsPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15FC45B0235F7F0100AF13C4;
-			remoteInfo = KNContactsPicker;
-		};
-		152967F62384AD4600EE0883 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152967EF2384AD4600EE0883 /* KNContactsPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15FC45B9235F7F0100AF13C4;
-			remoteInfo = KNContactsPickerTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		15FC460F235FB90100AF13C4 /* Embed Frameworks */ = {
@@ -57,7 +25,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				152967F92384AD5500EE0883 /* KNContactsPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,8 +32,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KNContactsPicker.xcodeproj; path = ../KNContactsPicker.xcodeproj; sourceTree = "<group>"; };
-		152967EF2384AD4600EE0883 /* KNContactsPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KNContactsPicker.xcodeproj; path = ../KNContactsPicker.xcodeproj; sourceTree = "<group>"; };
 		159CF9B523CE701500FD8005 /* CellImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellImageTableViewController.swift; sourceTree = "<group>"; };
 		15ABAF3623BA9C1700D5041E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15FC45E2235FB59200AF13C4 /* KNContactsViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KNContactsViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,38 +49,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				152967F82384AD5500EE0883 /* KNContactsPicker.framework in Frameworks */,
+				D9344D83241159040026C9FE /* KNContactsPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		152967E72384AD1B00EE0883 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				152967EC2384AD1B00EE0883 /* KNContactsPicker.framework */,
-				152967EE2384AD1B00EE0883 /* KNContactsPickerTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		152967F02384AD4600EE0883 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				152967F52384AD4600EE0883 /* KNContactsPicker.framework */,
-				152967F72384AD4600EE0883 /* KNContactsPickerTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		15FC45D9235FB59200AF13C4 = {
 			isa = PBXGroup;
 			children = (
-				152967EF2384AD4600EE0883 /* KNContactsPicker.xcodeproj */,
 				15FC45E4235FB59200AF13C4 /* KNContactsViewer */,
 				15FC45E3235FB59200AF13C4 /* Products */,
-				15FC460C235FB90000AF13C4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -144,14 +89,6 @@
 			path = KNContactsViewer;
 			sourceTree = "<group>";
 		};
-		15FC460C235FB90000AF13C4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,6 +106,9 @@
 			dependencies = (
 			);
 			name = KNContactsViewer;
+			packageProductDependencies = (
+				D9344D82241159040026C9FE /* KNContactsPicker */,
+			);
 			productName = KNContactsViewer;
 			productReference = 15FC45E2235FB59200AF13C4 /* KNContactsViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -197,55 +137,17 @@
 				Base,
 			);
 			mainGroup = 15FC45D9235FB59200AF13C4;
+			packageReferences = (
+				D9344D81241159040026C9FE /* XCRemoteSwiftPackageReference "KNContactsPicker" */,
+			);
 			productRefGroup = 15FC45E3235FB59200AF13C4 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 152967F02384AD4600EE0883 /* Products */;
-					ProjectRef = 152967EF2384AD4600EE0883 /* KNContactsPicker.xcodeproj */;
-				},
-				{
-					ProductGroup = 152967E72384AD1B00EE0883 /* Products */;
-					ProjectRef = 152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				15FC45E1235FB59200AF13C4 /* KNContactsViewer */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		152967EC2384AD1B00EE0883 /* KNContactsPicker.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KNContactsPicker.framework;
-			remoteRef = 152967EB2384AD1B00EE0883 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		152967EE2384AD1B00EE0883 /* KNContactsPickerTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = KNContactsPickerTests.xctest;
-			remoteRef = 152967ED2384AD1B00EE0883 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		152967F52384AD4600EE0883 /* KNContactsPicker.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KNContactsPicker.framework;
-			remoteRef = 152967F42384AD4600EE0883 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		152967F72384AD4600EE0883 /* KNContactsPickerTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = KNContactsPickerTests.xctest;
-			remoteRef = 152967F62384AD4600EE0883 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		15FC45E0235FB59200AF13C4 /* Resources */ = {
@@ -414,7 +316,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8UXEK92PP3;
+				DEVELOPMENT_TEAM = 77YXYQDT3J;
 				INFOPLIST_FILE = KNContactsViewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -433,7 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8UXEK92PP3;
+				DEVELOPMENT_TEAM = 77YXYQDT3J;
 				INFOPLIST_FILE = KNContactsViewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -469,6 +371,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D9344D81241159040026C9FE /* XCRemoteSwiftPackageReference "KNContactsPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/neone/KNContactsPicker.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D9344D82241159040026C9FE /* KNContactsPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9344D81241159040026C9FE /* XCRemoteSwiftPackageReference "KNContactsPicker" */;
+			productName = KNContactsPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15FC45DA235FB59200AF13C4 /* Project object */;
 }
