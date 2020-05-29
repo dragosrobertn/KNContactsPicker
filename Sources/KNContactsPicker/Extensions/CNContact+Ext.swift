@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dragos-Robert Neagu. All rights reserved.
 //
 
+#if canImport(UIKit) && canImport(Contacts)
 import UIKit
 import Contacts
 
@@ -31,3 +32,4 @@ extension CNContact {
     }
 }
 
+#endif

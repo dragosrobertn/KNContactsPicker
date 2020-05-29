@@ -9,6 +9,11 @@ KINN/.DS_Store
 build/
 DerivedData/
 
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+
 ## Various settings
 *.pbxuser
 !default.pbxuser

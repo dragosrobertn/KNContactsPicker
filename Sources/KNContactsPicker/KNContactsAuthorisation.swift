@@ -5,6 +5,8 @@
 //  Created by Dragos-Robert Neagu on 22/10/2019.
 //  Copyright © 2019 Dragos-Robert Neagu. All rights reserved.
 //
+
+#if canImport(UIKit) && canImport(Contacts)
 import UIKit
 import Contacts
 
@@ -76,3 +78,4 @@ class KNContactsAuthorisation {
         return CNContactStore.authorizationStatus(for: .contacts)
     }
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2020 Dragos-Robert Neagu. All rights reserved.
 //
 
+#if canImport(UIKit) && canImport(Contacts)
 import Contacts
 import UIKit
 
@@ -73,3 +74,4 @@ struct KNContactCellModel {
     }
     
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dragos-Robert Neagu. All rights reserved.
 //
 
+#if canImport(UIKit) && canImport(Contacts)
 import Foundation
 import Contacts
 import UIKit
@@ -114,3 +115,4 @@ public struct KNPickerSettings {
     
     public init() {}
 }
+#endif

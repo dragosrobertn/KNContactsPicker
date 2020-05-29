@@ -6,6 +6,7 @@
 //  Copyright © 2020 Dragos-Robert Neagu. All rights reserved.
 //
 
+#if canImport(UIKit) && canImport(Contacts)
 import Foundation
 
 extension KNContactsPicker: KNContactsPickerControllerPresentationDelegate {
@@ -34,3 +35,4 @@ extension KNContactsPicker: KNContactsPickerControllerPresentationDelegate {
         })
     }
 }
+#endif

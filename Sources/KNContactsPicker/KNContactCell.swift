@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dragos-Robert Neagu. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 class KNContactCell: UITableViewCell {
@@ -190,3 +191,4 @@ class KNContactCell: UITableViewCell {
         }
     }
 }
+#endif

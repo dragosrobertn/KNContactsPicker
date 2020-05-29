@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dragos-Robert Neagu. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 struct KNPickerElements {
@@ -107,3 +108,4 @@ struct KNPickerElements {
         return searchResultsController
     }
 }
+#endif

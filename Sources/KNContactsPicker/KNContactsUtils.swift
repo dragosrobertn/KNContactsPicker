@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dragos-Robert Neagu. All rights reserved.
 //
 
+#if os(iOS)
 import Contacts
 
 typealias KNSortingOutcome = (sections: [String], sortedContacts: [CNContact], contactsSortedInSections: [String: [CNContact]])
@@ -32,6 +33,7 @@ struct KNContactUtils {
             CNContactPhoneNumbersKey,
             CNContactOrganizationNameKey
             ] as [CNKeyDescriptor]
+        
         array.append(CNContactFormatter.descriptorForRequiredKeys(for: .fullName))
         return array
     }
@@ -138,8 +140,6 @@ struct KNContactUtils {
             sections.append(specialKey)
         }
         
-//        self.sortIndexTitles(from: sections)
-        
         return (sections, sortedContacts, sortedContactsInSection)
     }
     
@@ -164,3 +164,4 @@ public enum KNContactSortingOption {
     case familyName
     case givenName
 }
+#endif

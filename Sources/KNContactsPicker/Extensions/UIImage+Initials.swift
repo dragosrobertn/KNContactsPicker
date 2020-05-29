@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dragos-Robert Neagu. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public typealias GradientColors = (top: UIColor, bottom: UIColor)
@@ -94,3 +95,5 @@ extension UIImage {
         return image
     }
 }
+
+#endif
