@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KNContactsPicker",
+        "repositoryURL": "https://github.com/dragosrobertn/KNContactsPicker",
+        "state": {
+          "branch": null,
+          "revision": "cacb91167cee4f55d4f1519ff876f16a6e6715f4",
+          "version": "0.3.0-alpha"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

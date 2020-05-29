@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		15FC45ED235FB59200AF13C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45EB235FB59200AF13C4 /* Main.storyboard */; };
 		15FC45EF235FB59400AF13C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45EE235FB59400AF13C4 /* Assets.xcassets */; };
 		15FC45F2235FB59400AF13C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45F0235FB59400AF13C4 /* LaunchScreen.storyboard */; };
+		C903FB4B24819195006C7B60 /* KNContactsPicker in Frameworks */ = {isa = PBXBuildFile; productRef = C903FB4A24819195006C7B60 /* KNContactsPicker */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C903FB4B24819195006C7B60 /* KNContactsPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +142,9 @@
 			dependencies = (
 			);
 			name = KNContactsViewer;
+			packageProductDependencies = (
+				C903FB4A24819195006C7B60 /* KNContactsPicker */,
+			);
 			productName = KNContactsViewer;
 			productReference = 15FC45E2235FB59200AF13C4 /* KNContactsViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +173,9 @@
 				Base,
 			);
 			mainGroup = 15FC45D9235FB59200AF13C4;
+			packageReferences = (
+				C903FB4924819195006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */,
+			);
 			productRefGroup = 15FC45E3235FB59200AF13C4 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -422,6 +430,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C903FB4924819195006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dragosrobertn/KNContactsPicker";
+			requirement = {
+				kind = exactVersion;
+				version = "0.3.0-alpha";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C903FB4A24819195006C7B60 /* KNContactsPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C903FB4924819195006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */;
+			productName = KNContactsPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15FC45DA235FB59200AF13C4 /* Project object */;
 }
