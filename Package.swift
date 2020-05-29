@@ -15,11 +15,13 @@ let package = Package(
     targets: [
         .target(
             name: "KNContactsPicker",
-            dependencies: []
+            dependencies: [],
+            path: "Sources"
          ),
         .testTarget(
             name: "KNContactsPickerTests",
-            dependencies: ["KNContactsPicker"]
+            dependencies: ["KNContactsPicker"],
+            path: "Tests"
          ),
     ]
 )
