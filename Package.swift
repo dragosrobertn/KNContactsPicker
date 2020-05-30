@@ -22,7 +22,8 @@ let package = Package(
             name: "KNContactsPickerTests",
             dependencies: ["KNContactsPicker"],
             path: "Tests"
-         ),
-    ]
+         )
+    ],
+    swiftLanguageVersions: [.v5]
 )
 

@@ -15,25 +15,8 @@
 		15FC45ED235FB59200AF13C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45EB235FB59200AF13C4 /* Main.storyboard */; };
 		15FC45EF235FB59400AF13C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45EE235FB59400AF13C4 /* Assets.xcassets */; };
 		15FC45F2235FB59400AF13C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FC45F0235FB59400AF13C4 /* LaunchScreen.storyboard */; };
-		C903FB4B24819195006C7B60 /* KNContactsPicker in Frameworks */ = {isa = PBXBuildFile; productRef = C903FB4A24819195006C7B60 /* KNContactsPicker */; };
+		C903FB4F24819905006C7B60 /* KNContactsPicker in Frameworks */ = {isa = PBXBuildFile; productRef = C903FB4E24819905006C7B60 /* KNContactsPicker */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		152967EB2384AD1B00EE0883 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15FC45B0235F7F0100AF13C4;
-			remoteInfo = KNContactsPicker;
-		};
-		152967ED2384AD1B00EE0883 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15FC45B9235F7F0100AF13C4;
-			remoteInfo = KNContactsPickerTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		15FC460F235FB90100AF13C4 /* Embed Frameworks */ = {
@@ -49,7 +32,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KNContactsPicker.xcodeproj; path = ../KNContactsPicker.xcodeproj; sourceTree = "<group>"; };
 		159CF9B523CE701500FD8005 /* CellImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellImageTableViewController.swift; sourceTree = "<group>"; };
 		15ABAF3623BA9C1700D5041E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15FC45E2235FB59200AF13C4 /* KNContactsViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KNContactsViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,22 +49,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C903FB4B24819195006C7B60 /* KNContactsPicker in Frameworks */,
+				C903FB4F24819905006C7B60 /* KNContactsPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		152967E72384AD1B00EE0883 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				152967EC2384AD1B00EE0883 /* KNContactsPicker.framework */,
-				152967EE2384AD1B00EE0883 /* KNContactsPickerTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		15FC45D9235FB59200AF13C4 = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +93,6 @@
 		15FC460C235FB90000AF13C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -143,7 +115,7 @@
 			);
 			name = KNContactsViewer;
 			packageProductDependencies = (
-				C903FB4A24819195006C7B60 /* KNContactsPicker */,
+				C903FB4E24819905006C7B60 /* KNContactsPicker */,
 			);
 			productName = KNContactsViewer;
 			productReference = 15FC45E2235FB59200AF13C4 /* KNContactsViewer.app */;
@@ -174,39 +146,16 @@
 			);
 			mainGroup = 15FC45D9235FB59200AF13C4;
 			packageReferences = (
-				C903FB4924819195006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */,
+				C903FB4D24819905006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */,
 			);
 			productRefGroup = 15FC45E3235FB59200AF13C4 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 152967E72384AD1B00EE0883 /* Products */;
-					ProjectRef = 152967E62384AD1B00EE0883 /* KNContactsPicker.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				15FC45E1235FB59200AF13C4 /* KNContactsViewer */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		152967EC2384AD1B00EE0883 /* KNContactsPicker.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KNContactsPicker.framework;
-			remoteRef = 152967EB2384AD1B00EE0883 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		152967EE2384AD1B00EE0883 /* KNContactsPickerTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = KNContactsPickerTests.xctest;
-			remoteRef = 152967ED2384AD1B00EE0883 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		15FC45E0235FB59200AF13C4 /* Resources */ = {
@@ -432,20 +381,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C903FB4924819195006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */ = {
+		C903FB4D24819905006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dragosrobertn/KNContactsPicker";
 			requirement = {
 				kind = exactVersion;
-				version = "0.3.0-alpha";
+				version = "0.3.0-alpha-2";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C903FB4A24819195006C7B60 /* KNContactsPicker */ = {
+		C903FB4E24819905006C7B60 /* KNContactsPicker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C903FB4924819195006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */;
+			package = C903FB4D24819905006C7B60 /* XCRemoteSwiftPackageReference "KNContactsPicker" */;
 			productName = KNContactsPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
