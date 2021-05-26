@@ -43,7 +43,7 @@ struct KNPickerElements {
     
     static func selectAllButton(_ count: Int, action: Selector, target: UIViewController, settings: KNPickerSettings) -> UIBarButtonItem {
         let leftButton: UIButton = UIButton(type: .system)
-        leftButton.setTitle(settings.clearSelectionButtonTitle, for: .normal)
+        leftButton.setTitle(settings.selectAllContactsButtonTitle, for: .normal)
         leftButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         leftButton.addTarget(target, action: action, for: .touchUpInside)
         
