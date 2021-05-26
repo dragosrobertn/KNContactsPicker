@@ -41,6 +41,20 @@ struct KNPickerElements {
         return UIBarButtonItem(customView: rightButton)
     }
     
+    static func selectAllButton(_ count: Int, action: Selector, target: UIViewController, settings: KNPickerSettings) -> UIBarButtonItem {
+        let leftButton: UIButton = UIButton(type: .system)
+        leftButton.setTitle(settings.clearSelectionButtonTitle, for: .normal)
+        leftButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        leftButton.addTarget(target, action: action, for: .touchUpInside)
+        
+        if #available(iOS 13.0, *) {
+            leftButton.tintColor = .systemBlue
+        }
+        
+        leftButton.sizeToFit()
+        return UIBarButtonItem(customView: leftButton)
+    }
+    
     static func clearButton(_ count: Int, action: Selector, target: UIViewController,  settings: KNPickerSettings) -> UIBarButtonItem {
         let leftButton: UIButton = UIButton(type: .system)
         leftButton.setTitle(settings.clearSelectionButtonTitle, for: .normal)
