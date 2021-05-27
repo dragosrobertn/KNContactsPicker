@@ -84,14 +84,8 @@ class KNContactsPickerController: UITableViewController {
     }
     
     @objc func selectAllSelected() {
-        let sections = tableView.numberOfSections
-        for section in 0..<sections {
-            let rows = tableView.numberOfRows(inSection: section)
-            for row in 0..<rows {
-                let contact = self.getContact(at: IndexPath(row: row, section: section))
-                self.toggleSelected(contact)
-            }
-        }
+        let contactsToAdd = isFiltering ? filteredContacts : contacts
+        selectedContacts = Set(contactsToAdd)
     }
     
     @objc func completeSelection() {
