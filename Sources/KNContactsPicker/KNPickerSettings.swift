@@ -67,6 +67,14 @@ public struct KNPickerSettings {
     
     // The pick button title to display when no contacts have been selected
     public var defaultPickButtonTitle: String = "Done"
+    
+    // The pick button title to display when all contacts selection button is available
+    public var selectAllContactsButtonTitle: String = "Select All"
+    
+    // Boolean value whether to show Select All button
+    // Lets user select all contacts at once
+    public var showSelectAllContactsButton: Bool = true
+    
     // The pick button title to display when contacts have been selected.
     // You may specify a string formatting for one number representing the number of selected contacts.
     public var selectedContactsPickButtonTitle: String = "Select %d"

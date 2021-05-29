@@ -71,6 +71,9 @@ class KNContactsPickerController: UITableViewController {
         
         if count > 0 {
             self.navigationItem.leftBarButtonItem = KNPickerElements.clearButton(count, action: #selector(clearSelected), target: self, settings: settings)
+        }
+        else if (settings.showSelectAllContactsButton && settings.selectionMode == .multiple) {
+            self.navigationItem.leftBarButtonItem = KNPickerElements.clearButton(count, action: #selector(selectAllSelected), target: self, settings: settings)
         } else {
             self.navigationItem.leftBarButtonItem = nil
         }
@@ -78,6 +81,11 @@ class KNContactsPickerController: UITableViewController {
     
     public func getSelectedContacts() -> [CNContact] {
         return Array(selectedContacts)
+    }
+    
+    @objc func selectAllSelected() {
+        let contactsToAdd = isFiltering ? filteredContacts : contacts
+        selectedContacts = Set(contactsToAdd)
     }
     
     @objc func completeSelection() {
