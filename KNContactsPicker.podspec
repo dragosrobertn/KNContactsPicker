@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/dragosrobertn/KNContactsPicker.git", :tag => "#{spec.version}" }
 
-  spec.source_files  = "KNContactsPicker/*.swift", "KNContactsPicker/Extensions/*.swift"
+  spec.source_files  = "Sources/KNContactsPicker/*.swift", "Sources/KNContactsPicker/Extensions/*.swift"
 
   spec.frameworks = "Contacts", "ContactsUI"
 
