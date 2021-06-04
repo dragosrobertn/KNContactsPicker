@@ -4,7 +4,7 @@
 A modern, highly customisable contact picker with multi-selection options that closely resembles the behaviour of the ContactsUI's CNContactPickerViewController.
 
 # Preview
-|![Single Deselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleDeselectMode.gif)|![Single Reselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/SingleReselectMode.gif)|![Multiple Select Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/master/PreviewGIFs/MultiSelectionMode.gif)|
+|![Single Deselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/main/PreviewGIFs/SingleDeselectMode.gif)|![Single Reselect Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/main/PreviewGIFs/SingleReselectMode.gif)|![Multiple Select Mode](https://github.com/dragosrobertn/KNContactsPicker/blob/main/PreviewGIFs/MultiSelectionMode.gif)|
 |---|---|---|
 |Single Deselect|Single Reselect|Multi Select|
 
@@ -17,7 +17,7 @@ pod 'KNContactsPicker'
 ```
 Or specify desired version
 ```
-pod 'KNContactsPicker', '~> 0.1'
+pod 'KNContactsPicker', '~> 0.3'
 ```
 
 
