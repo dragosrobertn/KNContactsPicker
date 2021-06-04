@@ -10,7 +10,7 @@
 import Contacts
 
 @available(OSX 10.11, *)
-public protocol KNContactPickingDelegate: class {
+public protocol KNContactPickingDelegate: AnyObject {
     func contactPicker(didFailPicking error: Error)
     func contactPicker(didCancel error: Error)
     func contactPicker(didSelect contact: CNContact)

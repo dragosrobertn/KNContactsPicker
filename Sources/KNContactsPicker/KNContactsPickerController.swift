@@ -10,7 +10,7 @@
 import UIKit
 import Contacts
 
-protocol KNContactsPickerControllerPresentationDelegate: class {
+protocol KNContactsPickerControllerPresentationDelegate: AnyObject {
     func contactPickerDidCancel(_ picker: KNContactsPickerController)
     func contactPickerDidSelect(_ picker: KNContactsPickerController)
 }
