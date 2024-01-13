@@ -73,7 +73,7 @@ class KNContactsPickerController: UITableViewController {
             self.navigationItem.leftBarButtonItem = KNPickerElements.clearButton(count, action: #selector(clearSelected), target: self, settings: settings)
         }
         else if (settings.showSelectAllContactsButton && settings.selectionMode == .multiple) {
-            self.navigationItem.leftBarButtonItem = KNPickerElements.clearButton(count, action: #selector(selectAllSelected), target: self, settings: settings)
+            self.navigationItem.leftBarButtonItem = KNPickerElements.selectAllButton(count, action: #selector(selectAllSelected), target: self, settings: settings)
         } else {
             self.navigationItem.leftBarButtonItem = nil
         }
