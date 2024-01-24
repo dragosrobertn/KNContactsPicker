@@ -56,23 +56,33 @@ open class KNContactsPicker: UINavigationController {
 
     public func sort() {
         self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: settings.pickerContactsList, sortingType: settings.displayContactsSortedBy)
+        if let controller = self.topViewControllers as? KNContactsPickerController {
+            controller.contacts = sortingOutcome?.sortedContacts ?? []
+            controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
+            controller.sections = sortingOutcome?.sections ?? []
+            controller.tableView.reloadData()
+        }
     }
 
     public func fetchContacts() {
-
         switch settings.pickerContactsSource {
         case .userProvided:
             self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: settings.pickerContactsList, sortingType: settings.displayContactsSortedBy)
         case .default:
             requestAndSortContacts { [weak self] result in
                 guard let self = self else { return }
-                let contactPickerController = self.getContactsPicker()
-
-                self.presentationController?.delegate = contactPickerController
-                self.viewControllers.append(contactPickerController)
+                if let controller = self.topViewControllers as? KNContactsPickerController {
+                    controller.contacts = sortingOutcome?.sortedContacts ?? []
+                    controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
+                    controller.sections = sortingOutcome?.sections ?? []
+                    controller.tableView.reloadData()
+                } else {
+                    let contactPickerController = self.getContactsPicker()
+                    self.presentationController?.delegate = contactPickerController
+                    self.viewControllers.append(contactPickerController)
+                }
             }
         }
-
     }
 
     private func requestAndSortContacts(completion: @escaping (Result<[CNContact], KNContactFetchingError>) -> Void) {
