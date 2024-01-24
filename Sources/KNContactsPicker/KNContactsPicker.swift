@@ -12,7 +12,7 @@ import Contacts
 
 open class KNContactsPicker: UINavigationController {
 
-    var settings: KNPickerSettings = KNPickerSettings()
+    public var settings: KNPickerSettings = KNPickerSettings()
     weak var contactPickingDelegate: KNContactPickingDelegate!
     private var contacts: [CNContact] = []
 
@@ -56,7 +56,7 @@ open class KNContactsPicker: UINavigationController {
 
     public func sort() {
         self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: settings.pickerContactsList, sortingType: settings.displayContactsSortedBy)
-        if let controller = self.topViewControllers as? KNContactsPickerController {
+        if let controller = self.topViewController as? KNContactsPickerController {
             controller.contacts = sortingOutcome?.sortedContacts ?? []
             controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
             controller.sections = sortingOutcome?.sections ?? []
@@ -71,7 +71,7 @@ open class KNContactsPicker: UINavigationController {
         case .default:
             requestAndSortContacts { [weak self] result in
                 guard let self = self else { return }
-                if let controller = self.topViewControllers as? KNContactsPickerController {
+                if let controller = self.topViewController as? KNContactsPickerController {
                     controller.contacts = sortingOutcome?.sortedContacts ?? []
                     controller.sortedContacts = sortingOutcome?.contactsSortedInSections ?? [:]
                     controller.sections = sortingOutcome?.sections ?? []
