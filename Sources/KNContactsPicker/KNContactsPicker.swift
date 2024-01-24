@@ -54,7 +54,11 @@ open class KNContactsPicker: UINavigationController {
         return controller
     }
 
-    func fetchContacts() {
+    public func sort() {
+        self.sortingOutcome = KNContactUtils.sortContactsIntoSections(contacts: settings.pickerContactsList, sortingType: settings.displayContactsSortedBy)
+    }
+
+    public func fetchContacts() {
 
         switch settings.pickerContactsSource {
         case .userProvided:
