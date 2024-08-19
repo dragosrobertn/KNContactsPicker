@@ -14,11 +14,17 @@ struct KNContactCellModel {
     private var contact: CNContact
     private var settings: KNPickerSettings
     private var formatter: CNContactFormatter
+    private var isSelected: Bool
     
-    init(contact: CNContact, settings: KNPickerSettings, formatter: CNContactFormatter) {
+    init(contact: CNContact, settings: KNPickerSettings, formatter: CNContactFormatter, isSelected: Bool) {
         self.contact = contact
         self.settings = settings
         self.formatter = formatter
+        self.isSelected = isSelected
+    }
+
+    func getIsSelected() -> Bool {
+        return isSelected
     }
     
     func getName() -> String {

@@ -147,15 +147,13 @@ class KNContactsPickerController: UITableViewController {
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! KNContactCell
         let contact = self.getContact(at: indexPath)
-        let contactModel = KNContactCellModel(contact: contact, settings: settings, formatter: formatter)
-        
-        let disabled = ( shouldDisableSelection && !selectedContacts.contains(contact) ) || settings.conditionToDisableContact(contact)
-        
         let selected = selectedContacts.contains(contact)
+        let disabled = ( shouldDisableSelection && !selectedContacts.contains(contact) ) || settings.conditionToDisableContact(contact)
+        let contactModel = KNContactCellModel(contact: contact, settings: settings, formatter: formatter, isSelected: selected)
+      
         cell.set(contactModel: contactModel)
-        
         cell.setDisabled(disabled: disabled)
-        cell.setSelected(selected, animated: false)
+        cell.setAppropriateStyle()
         return cell
     }
     
