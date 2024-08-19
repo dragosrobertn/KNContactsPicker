@@ -72,7 +72,11 @@ class CellImageTableViewController: UITableViewController {
         
         if indexPath.section == 0 {
             let option = cellImageOptions[indexPath.row]
-            cell.imageView?.image = UIImage(systemName: imageSource[option]!)!
+            if #available(iOS 13.0, *) {
+                cell.imageView?.image = UIImage(systemName: imageSource[option]!)!
+            } else {
+                // Fallback on earlier versions
+            }
             cell.textLabel?.text = titleSource[option]!
         }
         else if indexPath.section == 1 {
