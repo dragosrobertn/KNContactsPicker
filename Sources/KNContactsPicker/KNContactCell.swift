@@ -107,12 +107,12 @@ class KNContactCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.disabled = false
+        self.isSelected = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         if (!disabled) {
             super.setSelected(selected, animated: animated)
-            self.setAppropriateStyle()
         }
     }
     
@@ -176,6 +176,8 @@ class KNContactCell: UITableViewCell {
     }
     
     public func set(contactModel: KNContactCellModel) {
+        let isSelected = contactModel.getIsSelected()
+        self.setSelected(isSelected, animated: false)
         self.nameLabel.text = contactModel.getName()
         self.subtitleLabel.text = contactModel.getSubtitle()
         
